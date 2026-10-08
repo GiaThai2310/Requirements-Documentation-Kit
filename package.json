@@ -1,0 +1,30 @@
+{
+  "name": "requirements-documentation-kit",
+  "version": "1.0.1",
+  "description": "A comprehensive kit of Markdown templates and guides for requirements documentation.",
+  "main": "index.js",
+  "bin": {
+    "requirements-documentation-kit": "./bin/init.js",
+    "req-doc-kit": "./bin/init.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "requirements",
+    "documentation",
+    "templates",
+    "srs",
+    "prd",
+    "brd"
+  ],
+  "author": "",
+  "license": "MIT",
+  "files": [
+    "Agent",
+    "Context",
+    "Project",
+    "User",
+    "bin"
+  ]
+}
