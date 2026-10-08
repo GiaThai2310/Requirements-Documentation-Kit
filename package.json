@@ -4,8 +4,8 @@
   "description": "A comprehensive kit of Markdown templates and guides for requirements documentation.",
   "main": "index.js",
   "bin": {
-    "requirements-documentation-kit": "./bin/init.js",
-    "req-doc-kit": "./bin/init.js"
+    "requirements-documentation-kit": "bin/init.js",
+    "req-doc-kit": "bin/init.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,14 +16,29 @@
     "templates",
     "srs",
     "prd",
-    "brd"
+    "brd",
+    "brs",
+    "strs",
+    "business-analysis",
+    "product-management",
+    "software-requirements-specification",
+    "markdown-templates",
+    "ai-agent",
+    "agile"
   ],
-  "author": "",
+  "author": "Nguyễn Hoàng Gia Thái",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiaThai2310/Software-Requirements-Specification-Kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GiaThai2310/Software-Requirements-Specification-Kit/issues"
+  },
+  "homepage": "https://github.com/GiaThai2310/Software-Requirements-Specification-Kit#readme",
   "files": [
     "Agent",
     "Context",
-    "Project",
     "User",
     "bin"
   ]
