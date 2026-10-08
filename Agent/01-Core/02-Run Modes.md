@@ -4,9 +4,23 @@
 
 Run Modes define how deeply the Agent should work on an SRS task. They prevent uncontrolled full-document regeneration, reduce context waste, and protect approved content from accidental drift.
 
-The default mode is **Incremental Mode** unless the user explicitly requests another mode or the target file is empty.
+The default mode is **Incremental Mode** when an SRS exists. For a new project, or when only an idea exists, the default is **Discovery Mode**. If the correct mode is unclear, ask the user which mode to use and recommend one.
 
 ## 2. Supported Run Modes
+
+### Mode 0 - Discovery Mode
+
+**Trigger**: A new project starts, only an idea exists, `00-Project-State.md` does not exist, the user asks for a BRS, BRD, StRS, or PRD, or SRS mandatory inputs are missing.
+
+**Objective**: Turn the idea into the business-layer and stakeholder/product-layer documents of the chosen Document Set through a guided interview (Stages S0-S2).
+
+**Agent behavior**:
+
+1. Follow `Agent/02-Discovery/01-Discovery Workflow.md`.
+2. Ask 3 to 5 questions per turn from `Agent/02-Discovery/02-Elicitation Question Bank.md`.
+3. Record answers in `00-Project-State.md` and the documents of the Document Set with source traces.
+4. Never infer the Project Profile, Tier, Output Language, Document Set, PRD variant, or Output Location; ask.
+5. Set completed sections to `REVIEW` and ask for the stage gate decision.
 
 ### Mode 1 - Draft / Outline Mode
 
@@ -17,7 +31,7 @@ The default mode is **Incremental Mode** unless the user explicitly requests ano
 **Agent behavior**:
 
 1. Read `01-Input Contract.md`, `SRS-TOC.md`, and `SRS-Template.md`.
-2. Generate only the table of contents, document control skeleton, and executive summary.
+2. Generate only the table of contents, the document control skeleton, and a short draft of Section 1.1 (Purpose) and Section 1.2 (Scope), tailored to the Profile and Tier.
 3. Do not write detailed requirements.
 4. Set generated content to `REVIEW` and halt for human feedback.
 
@@ -45,7 +59,7 @@ The default mode is **Incremental Mode** unless the user explicitly requests ano
 
 1. Enter read-only mode for the SRS.
 2. Apply relevant Micro and Macro Validation checks.
-3. Produce an Issue List, Gap Analysis, Validation Report, or Traceability Report in `Project/`.
+3. Produce an Issue List, Gap Analysis, Validation Report, or Traceability Report in `<OutputLocation>`.
 4. Do not introduce new business requirements.
 
 ### Mode 4 - Change Request / Patch Mode
@@ -57,7 +71,7 @@ The default mode is **Incremental Mode** unless the user explicitly requests ano
 **Agent behavior**:
 
 1. Log the change request.
-2. Reference `Agent/02-SRS/07-Traceability Workflow.md`.
+2. Reference `Agent/03-SRS/07-Traceability Workflow.md`.
 3. Identify directly and indirectly affected items.
 4. Present impact analysis and halt for explicit human approval before patching approved or review-bound content.
 5. Modify only affected items after approval.
@@ -76,13 +90,28 @@ The default mode is **Incremental Mode** unless the user explicitly requests ano
 4. Keep all generated content in `DRAFT` until it is submitted for review.
 5. Submit completed sections as `REVIEW`; do not set `APPROVED`.
 
+### Mode 6 - Delivery Mode (Optional)
+
+**Trigger**: The user asked for a Product Backlog or a Release Plan, and the Document Set includes it.
+
+**Objective**: Produce an ordered backlog and/or a release plan from the PRD and SRS (Stage S6).
+
+**Agent behavior**:
+
+1. Follow `Agent/04-Delivery/01-Delivery Workflow.md`.
+2. Ask the required Delivery questions before writing.
+3. Never invent dates, estimates, capacity, or cadence; record only values the user provides or confirms.
+4. Reference PRD and SRS IDs instead of restating them.
+5. Set completed content to `REVIEW` and ask for the S6 gate decision.
+
 ## 3. State Assessment Before Work
 
 Before selecting a mode, the Agent must inspect:
 
 | Item | Purpose |
 |---|---|
-| Existing `Project/` output | Determine whether content already exists. |
+| `00-Project-State.md` | Determine the current stage, profile, tier, and next step. |
+| Existing `<OutputLocation>` output | Determine whether content already exists. |
 | Current user instruction | Determine whether scope is narrow or broad. |
 | Requirement statuses | Protect `APPROVED` content. |
 | Known gaps or conflicts | Determine whether Audit Mode is required. |
@@ -91,10 +120,13 @@ Before selecting a mode, the Agent must inspect:
 
 | Condition | Transition |
 |---|---|
+| Only an idea exists, or no `00-Project-State.md` exists | Switch to Discovery Mode. |
+| SRS requested but SRS mandatory inputs are missing | Switch to Discovery Mode, or produce the Fatal Gap Questionnaire if the user declines. |
+| The correct mode or scope is unclear | Ask the user; recommend a mode. |
 | Same-priority source conflict | Switch to Audit Mode, document conflict, halt. |
-| Fatal mandatory input gap | Switch to questionnaire output, halt. |
 | More than 30 percent TBD density in a section | Switch to Audit Mode, produce gap report, halt. |
 | User introduces a change to existing requirements | Switch to Change Request / Patch Mode. |
+| User asks for a backlog or release plan | Confirm it is added to the Document Set, then switch to Delivery Mode when its entry conditions are met. |
 
 ## 5. Regeneration Constraint
 

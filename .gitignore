@@ -1,5 +1,13 @@
+ProjectDocuments/
 Project/
 Context/*
 !Context/SRS-TOC.md
 !Context/SRS-Template.md
 !Context/Context.md.example
+!Context/BRS-Template.md
+!Context/StRS-Template.md
+!Context/BRD-Template.md
+!Context/PRD-Template.md
+!Context/Backlog-Template.md
+!Context/Release-Plan-Template.md
+!Context/Project-State-Template.md

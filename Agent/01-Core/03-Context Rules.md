@@ -11,16 +11,23 @@ When initializing a session or starting a major SRS task, read files in this ord
 | Step | File | Action |
 |---:|---|---|
 | 1 | `Agent/AGENTS.md` | Read in full. |
-| 2 | `Agent/01-Core/01-Input Contract.md` | Read in full. |
-| 3 | `Agent/01-Core/02-Run Modes.md` | Read in full. |
-| 4 | `Agent/01-Core/03-Context Rules.md` | Read in full. |
-| 5 | `Agent/01-Core/04-Source Priority.md` | Read in full. |
-| 6 | `Agent/01-Core/05-Output Rules.md` | Read in full. |
-| 7 | `Agent/01-Core/06-Human Interaction Protocol.md` | Read in full. |
-| 8 | `Agent/01-Core/07-Terminology-Glossary Handling.md` | Read in full. |
-| 9 | `Context/SRS-TOC.md` | Read in full. |
-| 10 | `Context/SRS-Template.md` | Read in full or read the relevant section by mode. |
-| 11 | `Agent/02-SRS/*` | Read only the workflow needed for the active mode. |
+| 2 | `<OutputLocation>/00-Project-State.md` | Search `ProjectDocuments/*/00-Project-State.md` by default. Read in full if found. Ask which project or path if several match, none is found, or a custom location is used. |
+| 3 | `Agent/01-Core/01-Input Contract.md` | Read in full. |
+| 4 | `Agent/01-Core/02-Run Modes.md` | Read in full. |
+| 5 | `Agent/01-Core/03-Context Rules.md` | Read in full. |
+| 6 | `Agent/01-Core/04-Source Priority.md` | Read in full. |
+| 7 | `Agent/01-Core/05-Output Rules.md` | Read in full. |
+| 8 | `Agent/01-Core/06-Human Interaction Protocol.md` | Read in full. |
+| 9 | `Agent/01-Core/07-Terminology-Glossary Handling.md` | Read in full. |
+| 10 | `Agent/01-Core/08-Project Profiles.md` | Read in full. |
+| 11 | `Agent/01-Core/09-Document Set And Output Location.md` | Read in full. |
+| 12 | `Agent/02-Discovery/01-Discovery Workflow.md`, `02-Elicitation Question Bank.md` | Stages S0-S2: read in full. |
+| 13 | Output contracts 03 to 05 in `Agent/02-Discovery/` | Stages S1-S2: read the contract of each document in the Document Set. |
+| 14 | `Context/BRS-Template.md`, `Context/BRD-Template.md`, `Context/StRS-Template.md`, `Context/PRD-Template.md` | Stages S1-S2: read the template of the active document only. |
+| 15 | `Context/SRS-TOC.md` | Stages S3-S5: read in full. |
+| 16 | `Context/SRS-Template.md` | Stages S3-S5: read in full or read the relevant section by mode. |
+| 17 | `Agent/03-SRS/*` | Stages S3-S5: read only the workflow needed for the active mode. |
+| 18 | `Agent/04-Delivery/01-Delivery Workflow.md`, `Context/Backlog-Template.md`, `Context/Release-Plan-Template.md` | Stage S6: read only when Delivery documents are in the Document Set. |
 
 ## 3. Read Versus Summarize
 
@@ -30,7 +37,8 @@ When initializing a session or starting a major SRS task, read files in this ord
 | SRS template in Draft or Full Generation Mode | Read in full. |
 | SRS template in Incremental Mode | Read the target section and shared conventions. |
 | Large client source document | Summarize first, then re-read relevant passages before writing. |
-| Existing `Project/` SRS output | Read the target section in full before editing. |
+| Existing `<OutputLocation>` output (any document) | Read the target section in full before editing. |
+| Upstream BRS, BRD, StRS, or PRD while writing a downstream document | Read the referenced IDs in full; summarize the rest. |
 
 ## 4. Required Summary Format
 
@@ -64,7 +72,7 @@ The Agent must re-read source content when:
 |---|---|
 | `Human/*` | Do not read unless the user asks to maintain or audit the kit. |
 | `.git/*` | Do not read for requirements analysis. |
-| Unlisted files outside `Agent/`, `Context/`, and `Project/` | Do not read unless the user explicitly references them. |
+| Unlisted files outside `Agent/`, `Context/`, and `<OutputLocation>` | Do not read unless the user explicitly references them. |
 
 ## 7. Context Budget Guidance
 

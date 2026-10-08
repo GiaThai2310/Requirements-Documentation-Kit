@@ -3,8 +3,12 @@ title: "<Project Name> - Software Requirements Specification"
 aliases:
   - "<Project Name> SRS"
 document_type: srs
-srs_schema_version: "1.1"
+srs_schema_version: "1.2"
 project: "<Project Name>"
+project_profile: PERSONAL | TEAM | SME
+tier: 1 | 2 | 3
+output_language: en
+upstream: []  # documents from the Document Set, for example "01-BRD.md", "02-PRD.md"
 version: "0.1"
 status: DRAFT
 authors:
@@ -59,19 +63,19 @@ tags:
 - [5. Product Features](#5-product-features)
   - [5.1 Feature List](#51-feature-list)
   - [5.2 Feature Details](#52-feature-details)
-    - [F-DOMAIN-NNN - Feature Name](#f-domain-nnn---feature-name)
+    - [F-GEN-001 Feature Name](#f-gen-001-feature-name)
 - [6. Use Case Specifications](#6-use-case-specifications)
   - [6.1 Use Case Overview](#61-use-case-overview)
   - [6.2 Use Case Details](#62-use-case-details)
-    - [UC-DOMAIN-NNN - Use Case Name](#uc-domain-nnn---use-case-name)
+    - [UC-GEN-001 Use Case Name](#uc-gen-001-use-case-name)
 - [7. Business Rules](#7-business-rules)
   - [7.1 Business Rule Catalogue](#71-business-rule-catalogue)
   - [7.2 Business Rule Details](#72-business-rule-details)
-    - [BR-DOMAIN-NNN - Rule Name](#br-domain-nnn---rule-name)
+    - [BR-GEN-001 Rule Name](#br-gen-001-rule-name)
 - [8. Functional Requirements](#8-functional-requirements)
   - [8.1 Functional Requirement Catalogue](#81-functional-requirement-catalogue)
   - [8.2 Functional Requirement Details](#82-functional-requirement-details)
-    - [FR-DOMAIN-NNN - Requirement Name](#fr-domain-nnn---requirement-name)
+    - [FR-GEN-001 Requirement Name](#fr-gen-001-requirement-name)
 - [9. Data Requirements And Data Model](#9-data-requirements-and-data-model)
   - [9.1 Modeling Scope](#91-modeling-scope)
   - [9.2 Conceptual Data Model](#92-conceptual-data-model)
@@ -92,7 +96,7 @@ tags:
 - [11. Non-Functional Requirements](#11-non-functional-requirements)
   - [11.1 Non-Functional Requirement Catalogue](#111-non-functional-requirement-catalogue)
   - [11.2 Non-Functional Requirement Details](#112-non-functional-requirement-details)
-    - [NFR-CATEGORY-NNN - Requirement Name](#nfr-category-nnn---requirement-name)
+    - [NFR-PERF-001 Requirement Name](#nfr-perf-001-requirement-name)
   - [11.3 Performance](#113-performance)
   - [11.4 Availability](#114-availability)
   - [11.5 Reliability](#115-reliability)
@@ -106,6 +110,7 @@ tags:
   - [11.13 Logging And Auditing](#1113-logging-and-auditing)
   - [11.14 Backup And Recovery](#1114-backup-and-recovery)
   - [11.15 Compliance](#1115-compliance)
+  - [11.16 Safety](#1116-safety)
 - [12. Access Control Requirements](#12-access-control-requirements)
   - [12.1 Authentication Requirements](#121-authentication-requirements)
   - [12.2 Authorization Requirements](#122-authorization-requirements)
@@ -152,6 +157,9 @@ tags:
 |---|---|
 | Project Name | `<Project Name>` |
 | Software/System Name | `<Software or System Name>` |
+| Project Profile | PERSONAL / TEAM / SME |
+| Tier | 1 / 2 / 3 |
+| Upstream Documents | `<BRS / BRD / StRS / PRD with versions>`, or None (Discovery skipped, see `<DEC ID>`) |
 | Document Name | Software Requirements Specification |
 | Document ID | `<Document ID>` |
 | Version | `0.1` |
@@ -218,7 +226,9 @@ tags:
 
 | Reference ID | Document Or Source | Version/Date | Owner | Location | Relevant Content |
 |---|---|---|---|---|---|
-| REF-GEN-001 | `<Reference Name>` | `<Version or Date>` | `<Owner>` | `<Link or Path>` | `<Relevant sections>` |
+| REF-GEN-001 | `<Business-layer document: BRS or BRD>` | `<Version>` | `<Owner>` | `<01-BRS.md or 01-BRD.md>` | Business goals, rules, constraints |
+| REF-GEN-002 | `<Stakeholder/product-layer document: StRS or PRD>` | `<Version>` | `<Owner>` | `<02-StRS.md or 02-PRD.md>` | Users, needs, features, user stories |
+| REF-GEN-003 | `<Reference Name>` | `<Version or Date>` | `<Owner>` | `<Link or Path>` | `<Relevant sections>` |
 
 ### 1.6 Document Overview
 
@@ -250,9 +260,11 @@ tags:
 
 ### 2.3 User Classes And Characteristics
 
+Reuse the `UCL` IDs from the StRS (Section 5.1) or PRD (Section 5) when one exists.
+
 | User Class ID | User Class | Goals | Responsibilities | Technical Experience | Usage Frequency | Restrictions |
 |---|---|---|---|---|---|---|
-| USR-GEN-001 | `<User Class>` | `<Goals>` | `<Responsibilities>` | `<Experience>` | `<Frequency>` | `<Restrictions>` |
+| UCL-GEN-001 | `<User Class>` | `<Goals>` | `<Responsibilities>` | `<Experience>` | `<Frequency>` | `<Restrictions>` |
 
 ### 2.4 Operating Environment
 
@@ -315,6 +327,8 @@ tags:
 **Status**: DRAFT
 **Author**: Agent
 
+When a BRS or BRD exists, this section summarizes and references its items by ID (`BG`, `SC`, `BP`, `BR`) instead of restating them. See `Agent/03-SRS/02-SRS Output Contract.md` Section 5.
+
 ### 4.1 Problem Statement
 
 `<Describe the current problem, affected users or stakeholders, business context, and impact. Do not describe the technical solution here.>`
@@ -351,9 +365,9 @@ tags:
 
 ### 5.1 Feature List
 
-| Feature ID | Feature Name | Description | Primary Actor | Related Goal | Priority | Release | Status |
-|---|---|---|---|---|---|---|---|
-| F-GEN-001 | `<Feature Name>` | `<Description>` | `<Actor ID>` | `<Business Goal ID>` | Must / Should / Could / Won't | `<Release>` | DRAFT |
+| Feature ID | Feature Name | Description | Primary Actor | Related Goal | Stakeholder Requirements | Priority | Release | Status |
+|---|---|---|---|---|---|---|---|---|
+| F-GEN-001 | `<Feature Name>` | `<Description>` | `<Actor ID>` | `<Business Goal ID>` | `<STR IDs>` | Must / Should / Could / Won't | `<Release>` | DRAFT |
 
 ### 5.2 Feature Details
 
@@ -364,6 +378,7 @@ tags:
 | Description | `<Description>` |
 | Primary Actors | `<Actor IDs>` |
 | Business Goals | `<Business Goal IDs>` |
+| Stakeholder Requirements | `<STR IDs>` |
 | Use Cases | `<Use Case IDs>` |
 | Functional Requirements | `<Requirement IDs>` |
 | Priority | Must / Should / Could / Won't |
@@ -477,6 +492,8 @@ tags:
 - **Status**: DRAFT
 - **Source**: `<Source document and location>`
 - **Rationale**: `<Why this requirement exists>`
+- **Parent**: `<STR, F, or UC IDs, or None with reason>`
+- **Verification Method**: Test / Analysis / Inspection / Demonstration
 - **Acceptance Criteria**:
   1. Given `<condition>`, when `<event>`, then the system shall `<observable result>`.
 - **Dependencies**: None
@@ -713,9 +730,11 @@ erDiagram
 
 ### 11.1 Non-Functional Requirement Catalogue
 
-| Requirement ID | Category | Statement | Source | Target/Measure | Verification | Priority | Status |
-|---|---|---|---|---|---|---|---|
-| NFR-PERF-001 | Performance | `<Measurable requirement statement>` | `<Source ID>` | `<Target and unit>` | Test / Analysis / Inspection / Demonstration | Must / Should / Could / Won't | DRAFT |
+| Requirement ID | Category | ISO/IEC 25010 Characteristic | Statement | Source | Target/Measure | Verification | Priority | Status |
+|---|---|---|---|---|---|---|---|---|
+| NFR-PERF-001 | Performance | Performance Efficiency | `<Measurable requirement statement>` | `<Source ID>` | `<Target and unit>` | Test / Analysis / Inspection / Demonstration | Must / Should / Could / Won't | DRAFT |
+
+Map each category to an ISO/IEC 25010:2023 characteristic using `Agent/03-SRS/03-Requirement Writing Rules.md` Section 10.
 
 ### 11.2 Non-Functional Requirement Details
 
@@ -725,10 +744,12 @@ erDiagram
 - **Status**: DRAFT
 - **Source**: `<Source document and location>`
 - **Rationale**: `<Why this requirement exists>`
+- **Parent**: `<STR IDs (for example STR-QUAL-001), or None with reason>`
+- **Verification Method**: Test / Analysis / Inspection / Demonstration
 - **Acceptance Criteria**:
   1. Given `<measurement condition>`, when `<measurement action>`, then the system shall `<measurable result>`.
 - **Dependencies**: None
-- **Notes**: Category: Performance / Availability / Reliability / Scalability / Security / Privacy / Usability / Maintainability / Compatibility / Accessibility / Logging / Recovery / Compliance
+- **Notes**: Category: Performance / Availability / Reliability / Scalability / Security / Privacy / Usability / Maintainability / Compatibility / Accessibility / Logging / Recovery / Compliance / Safety; ISO/IEC 25010 Characteristic: `<Characteristic>`
 
 ### 11.3 Performance
 
@@ -781,6 +802,10 @@ erDiagram
 ### 11.15 Compliance
 
 `<Requirement IDs or Not Applicable with rationale>`
+
+### 11.16 Safety
+
+`<Requirement IDs or Not Applicable with rationale. Applies when product failure or misuse could cause harm to people, property, or the environment.>`
 
 ## 12. Access Control Requirements
 
@@ -875,9 +900,9 @@ erDiagram
 
 ### 16.1 Requirements Traceability Matrix
 
-| ID | Title | Source | Source Location | Parent | Related Feature/UC | Verification | Status |
-|---|---|---|---|---|---|---|---|
-| FR-GEN-001 | `<Requirement Title>` | `<Source ID>` | `<Source location>` | `<Parent ID>` | `<Related IDs>` | `<AC or test ID>` | DRAFT |
+| ID | Title | Source | Source Location | Upstream (STR/F/US/BG) | Parent | Related Feature/UC | Verification | Status |
+|---|---|---|---|---|---|---|---|---|
+| FR-GEN-001 | `<Requirement Title>` | `<Source ID>` | `<Source location>` | `<STR, F, or US ID / BG ID, or Derived>` | `<Parent ID>` | `<Related IDs>` | `<AC or test ID>` | DRAFT |
 
 ### 16.2 Requirement Dependencies
 
@@ -947,7 +972,7 @@ All SRS item IDs use:
 
 | Component | Meaning |
 |---|---|
-| `TYPE` | Item type such as `FR`, `NFR`, `BR`, `UC`, `CON`, `AC`, `OQ`, `DEC`, or `RISK`. |
+| `TYPE` | Item type such as `FR`, `NFR`, `BR`, `UC`, `CON`, `AC`, `OQ`, `DEC`, or `RISK`. Upstream items keep their types from the BRS, BRD, StRS, or PRD, such as `BG`, `SC`, `STR`, `UCL`, `OPS`, `US`, and `TRN`. The full list is in `Agent/01-Core/05-Output Rules.md` Section 4. |
 | `DOMAIN` | Stable uppercase domain or category code such as `AUTH`, `PAY`, `SEC`, `PERF`, or `GEN`. |
 | `NNN` | Three-digit zero-padded sequence number. |
 
@@ -1006,10 +1031,11 @@ The Agent must not independently set `APPROVED`.
 ### 21.4 Traceability And Completion
 
 - [ ] Requirements trace back to sources.
+- [ ] Requirements trace up to stakeholder requirements, PRD features or stories, and business goals when upstream documents exist.
 - [ ] Requirements link to verification evidence.
 - [ ] Requirement dependencies are documented.
 - [ ] Open questions are tracked.
-- [ ] All `[TBD]` and `[ASSUMPTION]` markers are reviewed.
+- [ ] All `[TBD]` and `[ASSUMPTION]` markers are reviewed; every `[TBD]` has an Open Question asked to the user.
 - [ ] Diagrams and textual requirements are consistent.
 - [ ] Revision History is updated.
 - [ ] Required stakeholders have reviewed the SRS.
@@ -1026,4 +1052,4 @@ The Agent must not independently set `APPROVED`.
 | Reviewer | `<Name>` | APPROVED / Changes Requested / Rejected | `YYYY-MM-DD` | |
 | Approver | `<Name>` | APPROVED / Rejected | `YYYY-MM-DD` | |
 
-Only a human approver can authorize `APPROVED` status.
+Only a human approver can authorize `APPROVED` status. The approver role depends on the Project Profile (`Agent/01-Core/08-Project Profiles.md`).

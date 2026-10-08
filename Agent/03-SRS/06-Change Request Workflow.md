@@ -4,7 +4,17 @@
 
 This document defines how the Agent handles change requests without regenerating the full SRS. Every change must be logged, analyzed, approved by the human when required, patched narrowly, validated, and closed.
 
-## 2. Lifecycle
+## 2. Formality By Profile
+
+| Profile | Changes To `DRAFT` / `REVIEW` Content | Changes To `APPROVED` Content |
+|---|---|---|
+| PERSONAL | Edit directly; add a revision history entry. | Lightweight CR: inline `[CHANGE]` annotation and revision history entry after the user confirms the impact summary. No separate CR file required. |
+| TEAM | Edit directly; add a revision history entry. | Full CR workflow with a CR file in `<OutputLocation>/Change-Requests/`. |
+| SME | Edit directly before baseline; full CR workflow after baseline. | Full CR workflow with a CR file. |
+
+If it is unclear whether a request is a change to existing requirements or new scope, ask the user. Changes may affect every document in the Document Set (BRS, BRD, StRS, PRD, SRS, Backlog, Release Plan); analyze impact across all of them, and never silently move, remove, or reorder approved backlog items or release scope.
+
+## 3. Lifecycle
 
 ```text
 RECEIVED -> ANALYZING -> AWAITING_DECISION -> AUTHORIZED -> APPLYING -> APPLIED -> REVIEW -> CLOSED
@@ -14,7 +24,7 @@ RECEIVED -> ANALYZING -> AWAITING_DECISION -> AUTHORIZED -> APPLYING -> APPLIED 
 
 `AUTHORIZED` means the human allowed the Agent to apply a patch. It is not the same as requirement approval.
 
-## 3. Step 1 - Receive And Log
+## 4. Step 1 - Receive And Log
 
 Assign a CR ID using the canonical ID pattern:
 
@@ -35,12 +45,12 @@ Log:
 | Status | RECEIVED |
 ```
 
-## 4. Step 2 - Impact Analysis
+## 5. Step 2 - Impact Analysis
 
 Before patching, the Agent must:
 
 1. Re-read the source material referenced by the CR.
-2. Consult the SRS traceability matrix or dependency records.
+2. Consult the SRS traceability matrix, StRS traceability (Section 9), PRD feature and story links, backlog and release plan references, or dependency records.
 3. Identify directly affected requirements.
 4. Identify indirectly affected requirements.
 5. Check for conflicts with approved or review-bound content.
@@ -73,7 +83,7 @@ Impact report format:
 |---|---|---|
 ```
 
-## 5. Step 3 - Human Decision
+## 6. Step 3 - Human Decision
 
 The Agent must halt after impact analysis when:
 
@@ -85,7 +95,7 @@ The Agent must halt after impact analysis when:
 
 The human may authorize, modify, reject, or defer the CR.
 
-## 6. Step 4 - Apply Patch
+## 7. Step 4 - Apply Patch
 
 After authorization, the Agent must:
 
@@ -100,7 +110,7 @@ After authorization, the Agent must:
 4. Retain deprecated requirements with `DEPRECATED` status and a replacement reference when applicable.
 5. Assign new IDs using `<TYPE>-<DOMAIN>-<NNN>`.
 
-## 7. Step 5 - Validate Patch
+## 8. Step 5 - Validate Patch
 
 Run:
 
@@ -109,7 +119,7 @@ Run:
 - Consistency checks for affected sections.
 - Status checks to ensure the Agent did not set `APPROVED`.
 
-## 8. Step 6 - Close Or Submit For Review
+## 9. Step 6 - Close Or Submit For Review
 
 After patching:
 
@@ -119,10 +129,10 @@ After patching:
 4. Keep affected requirements in `REVIEW`.
 5. Record `APPROVED` only if the human explicitly instructs the Agent to record approval.
 
-## 9. Cross-References
+## 10. Cross-References
 
 - Source priority: `Agent/01-Core/04-Source Priority.md`
 - Human interaction: `Agent/01-Core/06-Human Interaction Protocol.md`
-- Micro validation: `Agent/02-SRS/04-Micro Validation.md`
-- Macro validation: `Agent/02-SRS/05-Macro Validation.md`
-- Traceability: `Agent/02-SRS/07-Traceability Workflow.md`
+- Micro validation: `Agent/03-SRS/04-Micro Validation.md`
+- Macro validation: `Agent/03-SRS/05-Macro Validation.md`
+- Traceability: `Agent/03-SRS/07-Traceability Workflow.md`

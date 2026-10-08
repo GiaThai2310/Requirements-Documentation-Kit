@@ -22,7 +22,7 @@ Micro Validation checks each individual requirement immediately after writing or
 
 | Check | Rule | Severity |
 |---|---|---|
-| Uses `shall` | Requirement body uses exactly one mandatory `shall` for one obligation. | Critical |
+| Uses mandatory keyword | Requirement body uses exactly one mandatory keyword (`shall`, or the localized keyword recorded in `00-Project-State.md`) for one obligation. | Critical |
 | Has explicit subject | The system or actor performing the action is named. | Critical |
 | Matches EARS | Uses a valid EARS pattern or simple valid variant. | Warning |
 | No dangling clauses | Every `when`, `if`, `while`, or `where` clause is complete. | Critical |
@@ -51,12 +51,15 @@ Check for:
 | S5 | Priority | Has MoSCoW priority. | Warning |
 | S6 | Rationale | Explains why the requirement exists. | Warning |
 | S7 | Dependencies | Lists related IDs or `None`. | Warning |
+| S8 | Verification method | Names Test, Analysis, Inspection, or Demonstration. | Warning |
+| S9 | Parent | Names an upstream STR, F, US, or UC ID when a StRS or PRD exists, or states `None` with reason. | Warning |
+| S10 | Unconsented assumption | Contains no `[ASSUMPTION]` that the Assumption Policy does not permit. | Critical |
 
 ## 6. Failure Handling
 
 For each failed check:
 
-1. Add `[REVIEW]` only when human attention is needed.
+1. Add `[REVIEW]` when human attention is needed, and ask the user about it in the same turn when the fix depends on information the Agent does not have.
 2. Rewrite critical failures before delivery.
 3. Keep warnings visible in notes or validation reports.
 4. Do not convert any item to `APPROVED`.
@@ -69,6 +72,6 @@ Example:
 
 ## 7. Cross-References
 
-- Requirement writing rules: `Agent/02-SRS/03-Requirement Writing Rules.md`
+- Requirement writing rules: `Agent/03-SRS/03-Requirement Writing Rules.md`
 - Output rules: `Agent/01-Core/05-Output Rules.md`
-- Macro validation: `Agent/02-SRS/05-Macro Validation.md`
+- Macro validation: `Agent/03-SRS/05-Macro Validation.md`

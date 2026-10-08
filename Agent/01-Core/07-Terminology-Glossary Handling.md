@@ -60,8 +60,11 @@ The Agent must not coin abbreviations or specialized labels unless:
 
 The final SRS should include glossary content in:
 
-- Section 1.4 - Definitions, Acronyms and Abbreviations.
-- Appendix 18.1 - Glossary, when the glossary is long or needs supporting detail.
+- BRS and StRS Section 1.4 - Definitions, Acronyms And Abbreviations.
+- SRS Section 1.4 - Definitions, Acronyms and Abbreviations.
+- SRS Appendix 18.1 - Glossary, when the glossary is long or needs supporting detail.
+
+Terms defined in the BRS or StRS keep the same definition in the SRS. A changed definition requires a decision recorded by the user.
 
 ## 6. Final Glossary Format
 
@@ -83,8 +86,9 @@ The final SRS should include glossary content in:
 |---|---|
 | Client defines a term | Use the client definition. |
 | Client definition conflicts with industry meaning | Use the client definition, flag `[CONFLICT]` if risk exists, and note the difference. |
-| Client uses an undefined common industry term | Use the standard meaning and mark `[ASSUMPTION]`. |
-| Client uses an undefined novel term | Mark `[TBD]` and ask the human. |
+| Client uses an undefined common industry term | Propose the standard meaning and ask the user to confirm it. Record it as `[ASSUMPTION]` only as permitted by the Assumption Policy (`04-Source Priority.md` Rule 3.3). |
+| Client uses an undefined novel term | Mark `[TBD]`, create an Open Question, and ask the user. |
+| Output Language is not English | Add the mandatory keyword and EARS keyword equivalents to the glossary (`05-Output Rules.md` Section 12). |
 
 ## 9. Cross-References
 

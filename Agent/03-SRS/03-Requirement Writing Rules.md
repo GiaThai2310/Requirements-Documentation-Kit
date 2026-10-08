@@ -32,6 +32,8 @@ Do not use these words as requirement keywords:
 
 Use MoSCoW priority separately in the `Priority` field, not inside the requirement statement.
 
+For a non-English Output Language, use the single mandatory keyword recorded in `00-Project-State.md` (Vietnamese: `phải`) and avoid weaker verbs in that language (Vietnamese: `sẽ`, `nên`, `có thể`). See `Agent/01-Core/05-Output Rules.md` Section 12.
+
 ## 4. Forbidden Vague Terms
 
 Avoid untestable language in requirement statements:
@@ -79,6 +81,8 @@ Use the format from `Agent/01-Core/05-Output Rules.md`:
 - **Status**: DRAFT
 - **Source**: Direct Prompt (session YYYY-MM-DD)
 - **Rationale**: Invalid email addresses prevent account verification.
+- **Parent**: STR-AUTH-001
+- **Verification Method**: Test
 - **Acceptance Criteria**:
   1. Given a user enters an invalid email address, when the user submits the registration form, then the system shall display a validation message.
 - **Dependencies**: None
@@ -120,8 +124,29 @@ The system shall respond to search requests within 2 seconds at the 95th percent
 
 A requirement should describe required behavior, not implementation design, unless a design or technology constraint is explicitly provided by a source.
 
-## 10. Cross-References
+## 10. Non-Functional Requirement Categories (ISO/IEC 25010:2023)
 
-- Output format: `Agent/01-Core/05-Output Rules.md`
-- Micro validation: `Agent/02-SRS/04-Micro Validation.md`
-- Traceability: `Agent/02-SRS/07-Traceability Workflow.md`
+Classify every NFR by an ISO/IEC 25010:2023 product quality characteristic in the `ISO/IEC 25010 Characteristic` column of SRS Section 11.1. The SRS subsections map as follows:
+
+| ISO/IEC 25010:2023 Characteristic | Typical Sub-Characteristics | SRS Section | Category Code |
+|---|---|---|---|
+| Performance Efficiency | Time behaviour, resource utilization, capacity | 11.3 Performance, 11.6 Scalability | `PERF`, `SCAL` |
+| Reliability | Faultlessness, availability, fault tolerance, recoverability | 11.4 Availability, 11.5 Reliability, 11.14 Backup And Recovery | `AVAIL`, `REL`, `BKP` |
+| Security | Confidentiality, integrity, non-repudiation, accountability, authenticity, resistance | 11.7 Security, 11.8 Privacy, 11.13 Logging And Auditing | `SEC`, `PRIV`, `LOG` |
+| Interaction Capability | Appropriateness recognizability, learnability, operability, user error protection, user engagement, inclusivity, user assistance, self-descriptiveness | 11.9 Usability, 11.12 Accessibility | `USAB`, `ACC` |
+| Compatibility | Co-existence, interoperability | 11.11 Compatibility And Portability | `COMP` |
+| Maintainability | Modularity, reusability, analysability, modifiability, testability | 11.10 Maintainability | `MAINT` |
+| Flexibility | Adaptability, scalability, installability, replaceability | 11.6 Scalability, 11.11 Compatibility And Portability | `SCAL`, `PORT` |
+| Safety | Operational constraint, risk identification, fail safe, hazard warning, safe integration | 11.16 Safety | `SAFE` |
+| Not a product quality characteristic | Legal, regulatory, contractual obligations | 11.15 Compliance | `COMPL` |
+
+Functional suitability (the ninth characteristic) is covered by functional requirements in Section 8 and acceptance criteria in Section 15.
+
+Privacy requirements should also be checked against the ISO/IEC 29100 privacy principles when personal data is processed.
+
+## 11. Cross-References
+
+- Output format and language: `Agent/01-Core/05-Output Rules.md`
+- Micro validation: `Agent/03-SRS/04-Micro Validation.md`
+- Traceability: `Agent/03-SRS/07-Traceability Workflow.md`
+- Stakeholder requirement rules: `Agent/02-Discovery/03-BRS-StRS Output Contract.md`

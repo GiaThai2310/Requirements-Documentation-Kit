@@ -1,5 +1,79 @@
-# Context
+# Context - Idea Intake
 
-This file contains content/input provided by the client. The Agent should read it to understand the context, requirements, scope, and other relevant information for analysis or task execution.
+Copy this file to `Context/Context.md` and fill in what you know. **Only Section 1 is required.** Leave anything else empty, or write "I don't know": the Agent will ask you about it step by step in Discovery Mode instead of guessing.
+
+You may write in any language. Paste raw material (notes, emails, chat logs, links) into Section 10.
 
 ---
+
+## 1. Idea (Required)
+
+Describe the idea in two or three sentences: what it is, who it is for, and why it matters.
+
+>
+
+## 2. Project Setup
+
+| Field | Your Answer | Options And Hints |
+|---|---|---|
+| Project Name | | A working name is fine. |
+| Project Profile | | `PERSONAL` (only you), `TEAM` (2+ people building together), `SME` (a business or start-up). |
+| Complexity Tier | | `1` small (up to 3 user types, up to 10 features), `2` medium, `3` large or regulated. Leave empty if unsure. |
+| Output Language | | `en`, `vi`, or another language. IDs and statuses stay in English. |
+| Approver | | Who approves the documents. For PERSONAL, usually you. |
+| Reviewers | | Who reviews the documents, or None. |
+| Assumption Policy | | `ask` (default: the Agent always asks) or `allow-minor` (the Agent may propose minor assumptions for later confirmation). |
+| Documents Needed | | Any of: `BRS`, `BRD` (business), `StRS`, `PRD` (users and product), `SRS` (software), `Backlog`, `Release Plan` (optional). Leave empty for a recommendation. |
+| Save Documents To | | A folder path. Leave empty to use `ProjectDocuments/<ProjectName>/`. |
+| PRD Covers | | Whole product, one release, or one feature. Only if a PRD is needed. |
+| User Stories / Backlog / Release Plan | | `yes` or `no` for each. Any `yes` gives a Standard PRD; all `no` gives a Lean PRD. |
+
+## 3. Problem
+
+What problem does this solve? Who has the problem, and how do they deal with it today?
+
+>
+
+## 4. Goals And Success
+
+What should be true in 6 to 12 months if this succeeds? How will you measure it (numbers and dates if possible)?
+
+>
+
+## 5. Users
+
+Which types of people will use it? What do they need to accomplish?
+
+>
+
+## 6. Main Features
+
+List the main things the product should do. Mark the ones that are essential for the first release.
+
+>
+
+## 7. Constraints
+
+Budget, deadline, team size and skills, required or forbidden technology, platforms (web, mobile, desktop), languages, regions.
+
+>
+
+## 8. Alternatives And Competitors
+
+What do people use today instead (including spreadsheets or manual work)? How will this be different?
+
+>
+
+## 9. Business And Compliance (For SME, Optional Otherwise)
+
+Customers and market, how the product earns revenue or saves cost, personal data collected, countries of operation, regulated sector (finance, health, education).
+
+>
+
+## 10. Raw Material And Sources
+
+Paste or list notes, meeting minutes, emails, mockups, links, or earlier documents. Give each source a name and date if possible so requirements can be traced to it.
+
+| Source Name | Date Or Version | Type | Location Or Content |
+|---|---|---|---|
+| | | Notes / Meeting / Email / Mockup / Document / Link | |

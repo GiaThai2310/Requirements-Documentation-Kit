@@ -2,7 +2,7 @@
 
 ## 1. Purpose
 
-This document defines the standard workflow for analyzing source material and generating SRS content. It connects the core rules into an operational pipeline.
+This document defines the standard workflow for analyzing source material and generating SRS content (Stages S3-S5). It connects the core rules into an operational pipeline. Stages S0-S2 (idea intake, BRS, BRD, StRS, PRD) are defined in `Agent/02-Discovery/01-Discovery Workflow.md`.
 
 ## 2. Workflow Overview
 
@@ -20,9 +20,9 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 | 1.2 | Read `Context/SRS-TOC.md`. |
 | 1.3 | Read all or part of `Context/SRS-Template.md` based on Run Mode. |
 | 1.4 | Read or summarize source documents using `03-Context Rules.md`. |
-| 1.5 | Read existing relevant output in `Project/`. |
+| 1.5 | Read existing relevant output in `<OutputLocation>/`, including `00-Project-State.md` and the approved or reviewed upstream documents in the Document Set (BRS, BRD, StRS, PRD). |
 
-**Exit criteria**: The Agent understands available data, missing data, existing output state, and the active Run Mode.
+**Exit criteria**: The Agent understands available data, missing data, existing output state, the Project Profile and Tier, and the active Run Mode. If any of these is unclear, ask before continuing.
 
 ## 4. Phase 2 - Analyze
 
@@ -35,8 +35,9 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 | 2.3 | Identify stakeholders, actors, and external systems. |
 | 2.4 | Extract business rules, constraints, data needs, conceptual entities, attributes, relationships, ownership, and non-functional targets. |
 | 2.5 | Detect conflicts using `04-Source Priority.md`. |
-| 2.6 | Mark gaps with `[TBD]` or `[ASSUMPTION]`. |
+| 2.6 | Mark gaps with `[TBD]` and create Open Questions. Use `[ASSUMPTION]` only as the Assumption Policy permits. |
 | 2.7 | Check TBD density and halt if it exceeds the threshold. |
+| 2.8 | Ask the user Clarification Questions for every ambiguity found (`Agent/01-Core/06-Human Interaction Protocol.md` Section 5). |
 
 **Exit criteria**: Requirements and gaps are structured enough to map into the SRS.
 
@@ -48,7 +49,7 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 |---:|---|
 | 3.1 | Map each feature, rule, data artifact, and requirement to `Context/SRS-TOC.md`. |
 | 3.2 | Assign IDs using `<TYPE>-<DOMAIN>-<NNN>`. |
-| 3.3 | Build backward and forward traceability links for requirements and data artifacts. |
+| 3.3 | Build backward and forward traceability links for requirements and data artifacts, including upstream links to `STR`, PRD `F` and `US`, and `BG` items from whichever upstream documents exist. |
 | 3.4 | In Draft / Outline Mode, generate only outline content and halt. |
 
 **Exit criteria**: Each candidate requirement has an ID, section assignment, source trace, and verification direction.
@@ -64,7 +65,7 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 | 4.3 | Write requirements using EARS syntax from `03-Requirement Writing Rules.md`. |
 | 4.4 | Apply output format, markers, status labels, and traceability. |
 | 4.5 | Set newly generated content to `DRAFT`. |
-| 4.6 | Write only to `Project/`. |
+| 4.6 | Write only to `<OutputLocation>`. |
 
 **Exit criteria**: The target section is drafted with valid IDs, sources, statuses, and acceptance criteria.
 
@@ -93,6 +94,7 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 | 6.3 | Halt for human feedback in Incremental Mode. |
 | 6.4 | Record human decisions as P1 source material. |
 | 6.5 | Do not record `APPROVED` unless the human explicitly instructs approval recording. |
+| 6.6 | Update `00-Project-State.md` with the current stage, open questions, and the next step. |
 
 **Exit criteria**: The human has a clear review package and any unresolved issues are visible.
 
@@ -102,5 +104,5 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 - Run modes: `Agent/01-Core/02-Run Modes.md`
 - Source priority: `Agent/01-Core/04-Source Priority.md`
 - Output rules: `Agent/01-Core/05-Output Rules.md`
-- Requirement writing: `Agent/02-SRS/03-Requirement Writing Rules.md`
-- Traceability: `Agent/02-SRS/07-Traceability Workflow.md`
+- Requirement writing: `Agent/03-SRS/03-Requirement Writing Rules.md`
+- Traceability: `Agent/03-SRS/07-Traceability Workflow.md`

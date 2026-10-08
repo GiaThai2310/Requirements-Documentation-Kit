@@ -10,8 +10,8 @@ When two or more sources conflict, apply the highest available priority:
 
 | Priority | Source Type | Description |
 |---:|---|---|
-| P1 | Current Client Decision | A direct instruction from the user in the current session. |
-| P2 | Approved Document | A formally approved SRS, BRD, contract, security policy, or signed decision record. |
+| P1 | Current Client Decision | A direct instruction or interview answer from the user in the current session. |
+| P2 | Approved Document | A formally approved BRS, StRS, SRS, contract, security policy, or signed decision record. |
 | P3 | Meeting Notes / Workshop Records | Documented stakeholder discussion, decisions, and action items. |
 | P4 | Legacy Document | Old, inherited, superseded, or explicitly unapproved material. |
 | P5 | Agent Assumption | A defensible inference used only when no higher-priority source covers the point. |
@@ -29,7 +29,7 @@ If sources conflict at different priority levels, the higher-priority source win
 Example:
 
 ```markdown
-[CONFLICT] P2 Approved BRD states "SAML 2.0 only"; P4 Legacy SRS states "LDAP and Basic Auth". Resolved in favor of P2 by Source Priority Rule 3.1.
+[CONFLICT] P2 Approved BRS states "SAML 2.0 only"; P4 Legacy SRS states "LDAP and Basic Auth". Resolved in favor of P2 by Source Priority Rule 3.1.
 ```
 
 ### Rule 3.2 - Same-Level Conflict Requires Human Decision
@@ -42,13 +42,16 @@ If conflicting sources have the same priority level, the Agent must not resolve 
 
 ### Rule 3.3 - Assumption Governance
 
-The Agent may use `[ASSUMPTION]` only when:
+The Agent may use `[ASSUMPTION]` only when all of these are true:
 
 1. No P1-P4 source addresses the data point.
 2. The inference is directly supported by the project domain or stated feature set.
 3. The reasoning is written next to the assumption.
+4. The Assumption Policy in `00-Project-State.md` permits it:
+   - `ask` (default): the Agent first asks the user. It records `[ASSUMPTION]` only if the user chooses to proceed with the proposed assumption.
+   - `allow-minor`: the Agent may record a minor assumption without asking first, but must list it in the same turn for user confirmation. Assumptions affecting scope, cost, security, privacy, legal obligations, or the project profile are never minor; ask first.
 
-Assumptions never override P1-P4 sources.
+Assumptions never override P1-P4 sources. An assumption confirmed by the user becomes a P1 decision and the marker is updated accordingly.
 
 ### Rule 3.4 - Recency Within Same Source Type
 
@@ -60,13 +63,13 @@ If two sources have the same priority and same source type, use the most recent 
 Conflict detected?
   Different priority levels -> apply higher source, mark [CONFLICT].
   Same priority level       -> mark [CONFLICT], halt for human decision.
-  No source covers it       -> use [ASSUMPTION] only if defensible.
+  No source covers it       -> ask the user; use [ASSUMPTION] only as Rule 3.3 permits.
 ```
 
 ## 5. Out Of Scope
 
 This file defines priority rules only. Procedures live in:
 
-- `Agent/02-SRS/06-Change Request Workflow.md`
-- `Agent/02-SRS/07-Traceability Workflow.md`
+- `Agent/03-SRS/06-Change Request Workflow.md`
+- `Agent/03-SRS/07-Traceability Workflow.md`
 - `Agent/01-Core/06-Human Interaction Protocol.md`
