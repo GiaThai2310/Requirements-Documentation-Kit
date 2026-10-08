@@ -5,6 +5,14 @@
 [![Collaborative: Agent-User](https://img.shields.io/badge/Workflow-Agent--User-brightgreen?style=for-the-badge)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)]()
 
+### Quick Start
+
+Initialize the templates directly into your project directory:
+
+```bash
+npx requirements-documentation-kit
+```
+
 ---
 
 <details open>
