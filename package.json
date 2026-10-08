@@ -1,6 +1,6 @@
 {
   "name": "requirements-documentation-kit",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A comprehensive kit of Markdown templates and guides for requirements documentation.",
   "main": "index.js",
   "bin": {
