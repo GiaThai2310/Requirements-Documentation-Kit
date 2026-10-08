@@ -30,12 +30,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GiaThai2310/Software-Requirements-Specification-Kit.git"
+    "url": "git+https://github.com/GiaThai2310/Requirements-Documentation-Kit.git"
   },
   "bugs": {
-    "url": "https://github.com/GiaThai2310/Software-Requirements-Specification-Kit/issues"
+    "url": "https://github.com/GiaThai2310/Requirements-Documentation-Kit/issues"
   },
-  "homepage": "https://github.com/GiaThai2310/Software-Requirements-Specification-Kit#readme",
+  "homepage": "https://github.com/GiaThai2310/Requirements-Documentation-Kit#readme",
   "files": [
     "Agent",
     "Context",
