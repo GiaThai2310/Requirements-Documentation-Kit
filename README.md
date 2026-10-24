@@ -1,4 +1,4 @@
-# 🛠️ Requirements Documentation Kit / Bộ Công Cụ Tài Liệu Yêu Cầu
+# 🛠️ Requirements Documentation Kit / Bộ Công Cụ Tài Liệu Hóa Yêu Cầu
 
 [![Standards: ISO/IEC/IEEE 29148](https://img.shields.io/badge/Standards-ISO%2FIEC%2FIEEE%2029148-blue?style=for-the-badge)](https://www.iso.org/standard/72087.html)
 [![Syntax: EARS](https://img.shields.io/badge/Syntax-EARS-orange?style=for-the-badge)](https://ears.requirements.org/)
