@@ -7,7 +7,7 @@
 
 ### Quick Start
 
-Initialize the templates directly into your project directory:
+Initialize the templates into an `RDK/` folder in your project directory:
 
 ```bash
 npx requirements-documentation-kit
@@ -88,9 +88,9 @@ Requirements Documentation Kit/
 
 | Directory | Description |
 | :--- | :--- |
-| **[`Agent/`](Agent/)** | Read-only system instructions for AI Agents. `AGENTS.md` is the master prompt. |
-| **[`Context/`](Context/)** | Your idea intake and the document templates. |
-| **[`User/`](User/)** | Explanatory documentation for Users. |
+| **`RDK/Agent/`** | Read-only system instructions for AI Agents. `AGENTS.md` is the master prompt. |
+| **`RDK/Context/`** | Your idea intake and the document templates. |
+| **`RDK/User/`** | Explanatory documentation for Users. |
 | **`ProjectDocuments/`** | Default output folder, one subfolder per project. You can choose another location; the Agent writes only there. |
 
 ---

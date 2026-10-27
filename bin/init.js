@@ -5,7 +5,7 @@ const path = require('path');
 
 const foldersToCopy = ['Agent', 'Context', 'User'];
 const sourceDir = path.join(__dirname, '..');
-const targetDir = process.cwd();
+const targetDir = path.join(process.cwd(), 'RDK');
 
 function copyRecursiveSync(src, dest) {
   const exists = fs.existsSync(src);
@@ -42,4 +42,4 @@ foldersToCopy.forEach(folder => {
   }
 });
 
-console.log('Done! Templates have been copied to your current directory.');
+console.log('Done! Templates have been copied to the RDK/ directory.');
