@@ -18,30 +18,41 @@ This document defines where the Agent writes output, which format it must use, w
 | Validation and check reports | `<OutputLocation>/Reports/` | Use names such as `Validation-Report-YYYY-MM-DD.md` or `Discovery-Check-YYYY-MM-DD.md`. |
 | Traceability matrices | `<OutputLocation>/03-SRS.md` Section 16 or `<OutputLocation>/Traceability-Matrix.md` | |
 | Change request artifacts | `<OutputLocation>/Change-Requests/` | One file per CR, for example `CR-GEN-001.md`. |
+| Open question answer sheet | `<OutputLocation>/OQ-Answers.md` | Created from `Context/OQ-Answers-Template.md` when the first open question exists; lists the open questions of every document so the user can answer them in one place (`06-Human Interaction Protocol.md` Section 5.1). |
 
-The Agent may create or modify files only in `<OutputLocation>`. During normal requirements work, the Agent must not modify `Agent/`, `Context/`, or `Human/`.
+The Agent may create or modify files only in `<OutputLocation>`. During normal requirements work, the Agent must not modify `Agent/`, `Context/`, or `User/`.
 
 If the project name or the Output Location is unknown, ask the user before creating the folder. Never overwrite an existing file without explicit confirmation.
 
 ## 3. Requirement Statement Format
 
-Every individual SRS requirement must follow this structure. The attributes follow the requirement attributes recommended by ISO/IEC/IEEE 29148 (identification, priority, status, source, rationale, trace, verification method). Stakeholder requirements in the StRS use the structure in `Agent/02-Discovery/03-BRS-StRS Output Contract.md` Section 7.2.
+Every individual SRS requirement in a `Standard` or `Strict` domain follows this structure. The attributes follow the requirement attributes recommended by ISO/IEC/IEEE 29148 (identification, priority, status, source, rationale, trace, verification method). Stakeholder requirements in the StRS use the structure in `Agent/02-Discovery/03-BRS-StRS Output Contract.md` Section 7.2.
 
 ```markdown
 #### [REQ-ID] Requirement Title
 
+- **Statement**: [The requirement sentence, written in EARS]
 - **Priority**: [Must / Should / Could / Won't] (MoSCoW)
-- **Status**: [DRAFT | REVIEW | APPROVED | DEPRECATED]
+- **Status**: [DRAFT | REVIEW | APPROVED]
 - **Source**: [Source document name and section/page, or "Direct Prompt"]
-- **Rationale**: [Why this requirement exists]
-- **Parent**: [Upstream STR, F, or UC ID(s), or "None" with reason]
+- **Parent**: [Upstream STR, F, US, or UC ID(s), or "None" with reason]
 - **Verification Method**: [Test | Analysis | Inspection | Demonstration]
 - **Acceptance Criteria**:
   1. [Testable criterion 1]
   2. [Testable criterion 2]
+- **Rationale**: [Why this requirement exists]
 - **Dependencies**: [Related requirement IDs, or "None"]
 - **Notes**: [Markers, assumptions, conflicts, or review notes]
 ```
+
+Fields by domain rigor (`Agent/03-SRS/02-SRS Output Contract.md` Section 2.2):
+
+| Field | Light | Standard | Strict |
+|---|---|---|---|
+| ID, title, Statement, Priority, Status, Source, Parent, Verification Method, Acceptance Criteria | Required, as columns of the domain requirement table | Required | Required |
+| Rationale, Dependencies, Notes | Omitted; put a needed note in the Statement or the Open Questions | Only when they have content | Always present; `None` when empty |
+
+Each item is written once. Catalogues and indexes list IDs, names, priorities, and statuses; they do not repeat statements or acceptance criteria. The RTM is regenerated from the items (`Agent/03-SRS/07-Traceability Workflow.md` Section 6).
 
 ## 4. Canonical ID Convention
 
@@ -80,13 +91,8 @@ All IDs use this canonical pattern:
 | `SC` | Success Criterion | `SC-GEN-001` |
 | `ENT` | Data Entity | `ENT-DATA-001` |
 | `REL` | Data Relationship | `REL-DATA-001` |
-| `DMR` | Data Modeling Rule | `DMR-DATA-001` |
-| `TBL` | Physical Table | `TBL-DATA-001` |
-| `COL` | Table Column | `COL-DATA-001` |
 | `ATTR` | Entity Attribute | `ATTR-DATA-001` |
-| `DATA` | Data Item | `DATA-DATA-001` |
 | `VAL` | Data Validation Rule | `VAL-DATA-001` |
-| `CDC` | Cross-Domain Constraint | `CDC-DATA-001` |
 | `MIG` | Data Migration Item | `MIG-DATA-001` |
 | `UI` | User Interface Requirement | `UI-GEN-001` |
 | `IF` | Interface | `IF-INTG-001` |
@@ -134,9 +140,21 @@ Each major SRS section must begin with:
 | `DRAFT` | Initial or revised content not yet submitted for review. | Agent |
 | `REVIEW` | Submitted for human review or awaiting decision. | Agent |
 | `APPROVED` | Explicitly accepted by a human approver. | Human only |
-| `DEPRECATED` | Replaced or retired but retained for audit history. | Agent after human instruction or approved CR |
+| `DEPRECATED` | Replaced or retired. The item leaves the document body and is recorded in the document's Deprecated Items register (Section 6.1). | Agent after human instruction or approved CR |
 
 The Agent must never set a requirement, section, or change request result to `APPROVED` unless the human explicitly instructs it to record an approval decision.
+
+Open questions use their own two statuses: `OPEN` (waiting for an answer) and `CLOSED` (answered and applied, with a resolution recorded). These apply only to `OQ` items.
+
+### 6.1 Deprecated Items Register
+
+When an item becomes `DEPRECATED` (after human instruction or an approved change request):
+
+1. Remove its block or row from the body of the document.
+2. Add one row to the document's Deprecated Items register (SRS Section 18.4, or the equivalent appendix in the BRS, BRD, StRS, PRD, Backlog, or Release Plan): ID, title, deprecated date, reason (`DEC` or `CR` ID), replaced by.
+3. Keep the full previous text in the change request file (Impact Analysis, `Current State`) or in the version history of the documents. Under the `PERSONAL` profile without a CR file, quote the previous statement in the register's reason column.
+4. Update every active reference to the deprecated ID so that it points to the replacement, or remove the reference when there is no replacement.
+5. Never reuse the deprecated ID.
 
 ## 7. Markers
 
@@ -149,7 +167,7 @@ Markers are inline tags used to flag gaps, conflicts, and assumptions.
 | `[ASSUMPTION]` | A defensible inference by the Agent, permitted by the Assumption Policy. | Include reasoning immediately after the marker; follow `04-Source Priority.md` Rule 3.3. |
 | `[CONFLICT]` | Sources contradict each other. | Cite source priority handling and halt for same-priority conflicts. |
 | `[REVIEW]` | Low confidence or human attention needed. | Explain what needs review. |
-| `[DEPRECATED]` | Retained item no longer active. | Keep for audit history; do not delete. |
+| `[DEPRECATED]` | Used only inside the Deprecated Items register and in change request files. | Do not leave deprecated blocks in the document body (Section 6.1). |
 
 ## 8. TBD Tracking List
 

@@ -158,20 +158,18 @@ Variants: Lean, Standard.
 
 ### 7.2 Feature Details
 
-Variants: Lean (optional), Standard (required).
+Variants: Lean (optional), Standard (conditional).
+
+Write a detail entry only for a feature that has information beyond its row in 7.1, such as scope boundaries, business rules, or notes. Do not repeat the description, personas, goals, needs, priority, or status from 7.1. User stories are linked through the `Feature` field of each story, so they are not listed here.
 
 #### F-GEN-001 Feature Name
 
 | Attribute | Value |
 |---|---|
-| Description | `<Description>` |
-| Personas | `<UCL IDs>` |
-| Goals | `<BG IDs>` |
-| Needs | `<STR IDs>` |
-| User Stories | `<US IDs>` |
+| Scope Boundaries | `<What the feature includes and excludes>` |
 | Business Rules | `<BR IDs or None>` |
-| Priority | Must / Should / Could / Won't |
-| Status | DRAFT |
+| Source | `<Source reference>` |
+| Notes | `<Markers or None>` |
 
 ## 8. User Stories
 
@@ -268,7 +266,7 @@ Variants: Lean, Standard.
 
 | Question ID | Question | Context | Affected Sections | Owner | Due Date | Status | Resolution |
 |---|---|---|---|---|---|---|---|
-| OQ-GEN-001 | `<Question>` | `<Context>` | `<Sections or IDs>` | `<Owner>` | `YYYY-MM-DD` | REVIEW | |
+| OQ-GEN-001 | `<Question>` | `<Context>` | `<Sections or IDs>` | `<Owner>` | `YYYY-MM-DD` | OPEN | |
 
 ### 14.2 Decisions
 
@@ -281,6 +279,14 @@ Variants: Lean, Standard.
 | Risk ID | Risk | Cause | Impact | Probability | Severity | Mitigation | Owner | Status |
 |---|---|---|---|---|---|---|---|---|
 | RISK-GEN-001 | `<Risk>` | `<Cause>` | `<Impact>` | Low / Medium / High | Low / Medium / High | `<Mitigation>` | `<Owner>` | DRAFT |
+
+### 14.4 Deprecated Items
+
+Deprecated items are removed from the body of the document and recorded here, one row each (`Agent/01-Core/05-Output Rules.md` Section 6.1). Deprecated IDs are never reused.
+
+| ID | Title | Deprecated Date | Reason | Replaced By |
+|---|---|---|---|---|
+| `<Item ID>` | `<Title>` | `YYYY-MM-DD` | `<DEC or CR ID>` | `<Replacement ID or None>` |
 
 ## 15. Approval
 

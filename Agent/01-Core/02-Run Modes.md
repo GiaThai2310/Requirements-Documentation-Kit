@@ -32,8 +32,10 @@ The default mode is **Incremental Mode** when an SRS exists. For a new project, 
 
 1. Read `01-Input Contract.md`, `SRS-TOC.md`, and `SRS-Template.md`.
 2. Generate only the table of contents, the document control skeleton, and a short draft of Section 1.1 (Purpose) and Section 1.2 (Scope), tailored to the Profile and Tier.
-3. Do not write detailed requirements.
-4. Set generated content to `REVIEW` and halt for human feedback.
+3. Propose the requirement domains and the **Domain Rigor Register** (`Agent/03-SRS/02-SRS Output Contract.md` Section 2.2): for each domain, the complexity drivers present with evidence, the recommended level, and the reasoning. Ask the user to confirm or change each level.
+4. Ask which run mode Stage S4 uses: Incremental Mode (write one section or domain, then halt for review) or Full Generation Mode (write every remaining section, then one review at the end). Recommend one with reasoning; the user decides.
+5. Do not write detailed requirements.
+6. Set generated content to `REVIEW` and halt for human feedback. Record the confirmed register in `00-Project-State.md` Section 1.2 and SRS Section 19, and the run mode choice as a `DEC-GEN-NNN` decision.
 
 ### Mode 2 - Incremental Mode
 

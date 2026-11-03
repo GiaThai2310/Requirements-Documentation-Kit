@@ -117,8 +117,16 @@ Optional delivery document. Structure based on ISO/IEC/IEEE 15289 generic plan c
 
 | ID | Type | Description | Owner | Status | Resolution |
 |---|---|---|---|---|---|
-| OQ-GEN-001 | Open Question | `<Question>` | `<Owner>` | REVIEW | |
+| OQ-GEN-001 | Open Question | `<Question>` | `<Owner>` | OPEN | |
 | DEC-GEN-001 | Decision | `<Decision>` | `<Owner>` | REVIEW | |
+
+### 7.1 Deprecated Items
+
+Deprecated items are removed from the body of the document and recorded here, one row each (`Agent/01-Core/05-Output Rules.md` Section 6.1). Deprecated IDs are never reused.
+
+| ID | Title | Deprecated Date | Reason | Replaced By |
+|---|---|---|---|---|
+| `<Item ID>` | `<Title>` | `YYYY-MM-DD` | `<DEC or CR ID>` | `<Replacement ID or None>` |
 
 ## 8. Approval
 

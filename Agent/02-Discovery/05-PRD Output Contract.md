@@ -56,7 +56,7 @@ Legend: `R` required, `C` conditional, `O` optional, `X` skip unless requested.
 | 5. Target Users And Personas | R | R |
 | 6. Key Scenarios | R | R |
 | 7.1 Feature List | R | R |
-| 7.2 Feature Details | O | R |
+| 7.2 Feature Details | O | C |
 | 8. User Stories | X | R |
 | 9. Product Quality Requirements | C | R |
 | 10. UX And Design References | O | C |
@@ -68,6 +68,7 @@ Legend: `R` required, `C` conditional, `O` optional, `X` skip unless requested.
 
 - Section 9 is `R` for Lean when users stated explicit quality expectations.
 - Section 13 is `R` for Standard when the user wants a release plan; milestone dates come only from the user.
+- Section 7.2 holds an entry only for a feature that has information beyond its row in Section 7.1 (scope boundaries, business rules, notes). It never repeats the row.
 - For the `SME` profile, Section 15 is `R` in both variants.
 
 Omitted sections use the Skipped Section Protocol (`Agent/03-SRS/02-SRS Output Contract.md` Section 7).
@@ -90,6 +91,7 @@ Follow `Agent/01-Core/09-Document Set And Output Location.md` Section 5.
 ### 5.1 Goals And Non-Goals
 
 - Every goal has a measurable success metric with a target and an evaluation time, or an Open Question asking for them.
+- A success criterion or release criterion that uses a statistic (percentage, rate, percentile, accuracy, precision, recall) states its measurement method: population, ground truth, matching rule, and computation (`Agent/03-SRS/03-Requirement Writing Rules.md` Section 8.1).
 - Non-goals state explicitly what the product or release will not do. They prevent scope creep and are as important as goals.
 
 ### 5.2 Features
@@ -121,7 +123,7 @@ Required attributes:
 - **Feature**: [F ID]
 - **Need**: [STR ID or None]
 - **Priority**: Must / Should / Could / Won't
-- **Status**: DRAFT | REVIEW | APPROVED | DEPRECATED
+- **Status**: DRAFT | REVIEW | APPROVED
 - **Source**: [Source reference]
 - **Acceptance Criteria**:
   1. Given [context], when [action], then [observable result].
@@ -162,7 +164,7 @@ Milestones (`MS`) list a name, a date, and the deliverable. **The Agent must not
 | ID | Check | Severity |
 |---|---|---|
 | PD1 | The problem statement describes the user or business problem without prescribing a solution. | Critical |
-| PD2 | Every goal has a measurable success metric, or an Open Question asking for one. | Critical |
+| PD2 | Every goal has a measurable success metric, or an Open Question asking for one. Every metric based on a statistic states its measurement method. | Critical |
 | PD3 | Non-goals or out-of-scope items are stated. | Critical |
 | PD4 | Every `Must` feature traces to at least one goal and one persona. | Critical |
 | PD5 | Standard: every `Must` feature has at least one user story; every story follows the story form, passes INVEST review, and has Given/When/Then acceptance criteria. | Critical |

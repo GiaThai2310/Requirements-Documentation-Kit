@@ -13,7 +13,7 @@ status: completed
 
 This page explains what a Software Requirements Specification (SRS) is, how it relates to the BRS, BRD, StRS, and PRD, and how this kit uses them.
 
-Detailed writing guidance is in `Human/Guide.md`.
+Detailed writing guidance is in `User/Guide.md`.
 The operational template is in `Context/SRS-Template.md`.
 
 ## 1. What Is An SRS?
@@ -48,7 +48,7 @@ ISO/IEC/IEEE 29148:2018 describes three related requirements documents (BRS, StR
 
 Each level traces to the one above it: business goals (`BG`) -> stakeholder requirements (`STR`) or PRD features and stories (`F`, `US`) -> software requirements (`FR`, `NFR`) -> backlog items and releases. This makes it possible to explain why every software requirement exists and to see what is affected when a goal changes.
 
-The depth of each document depends on the Project Profile (PERSONAL, TEAM, SME) and Tier (1-3). See `Human/Guide.md`.
+The depth of each document depends on the Project Profile (PERSONAL, TEAM, SME), the Tier (1-3, the scale of the product), and the Domain Rigor of each requirement domain (`Light`, `Standard`, `Strict`, its complexity). See `User/Guide.md`.
 
 ## 3. Why Use An SRS?
 
@@ -121,9 +121,9 @@ The canonical statuses are:
 | Status | Meaning |
 |---|---|
 | `DRAFT` | Created or revised but not yet submitted for review. |
-| `REVIEW` | Ready for human review or awaiting decision. |
-| `APPROVED` | Explicitly accepted by a human approver. |
-| `DEPRECATED` | Retained for history but no longer active. |
+| `REVIEW` | Ready for user review or awaiting decision. |
+| `APPROVED` | Explicitly accepted by a user approver. |
+| `DEPRECATED` | No longer active; removed from the document body and listed in the document's Deprecated Items table. |
 
 The Agent may not independently approve content.
 
@@ -134,8 +134,8 @@ The Agent may not independently approve content.
 | `[TBD]` | Required information is missing. |
 | `[ASSUMPTION]` | The Agent made a documented inference. |
 | `[CONFLICT]` | Sources contradict each other. |
-| `[REVIEW]` | Human attention is needed. |
-| `[DEPRECATED]` | Item is no longer active but retained for audit. |
+| `[REVIEW]` | User attention is needed. |
+| `[DEPRECATED]` | Used only in the Deprecated Items table and in change request files. |
 | `[CHANGE]` | Item was changed by a change request. |
 
 ## 6. Reference Basis
@@ -153,4 +153,4 @@ This kit is informed by:
 - EARS for constrained natural-language requirement syntax.
 - MoSCoW prioritisation for Must / Should / Could / Won't priority labels.
 
-See `Human/Guide.md` Section 1 for how each reference is used.
+See `User/Guide.md` Section 1 for how each reference is used.

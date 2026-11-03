@@ -48,11 +48,12 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 | Step | Action |
 |---:|---|
 | 3.1 | Map each feature, rule, data artifact, and requirement to `Context/SRS-TOC.md`. |
-| 3.2 | Assign IDs using `<TYPE>-<DOMAIN>-<NNN>`. |
-| 3.3 | Build backward and forward traceability links for requirements and data artifacts, including upstream links to `STR`, PRD `F` and `US`, and `BG` items from whichever upstream documents exist. |
-| 3.4 | In Draft / Outline Mode, generate only outline content and halt. |
+| 3.2 | Group candidate requirements into domains and assign IDs using `<TYPE>-<DOMAIN>-<NNN>`. |
+| 3.3 | For each domain, identify the complexity drivers with evidence and recommend a rigor level (`02-SRS Output Contract.md` Section 2.2). Ask the user to confirm the Domain Rigor Register before writing detailed requirements. |
+| 3.4 | Build backward and forward traceability links for requirements and data artifacts, including upstream links to `STR`, PRD `F` and `US`, and `BG` items from whichever upstream documents exist. |
+| 3.5 | In Draft / Outline Mode, generate only outline content and halt. |
 
-**Exit criteria**: Each candidate requirement has an ID, section assignment, source trace, and verification direction.
+**Exit criteria**: Each candidate requirement has an ID, section assignment, source trace, and verification direction, and every domain has a confirmed rigor level.
 
 ## 6. Phase 4 - Write
 
@@ -62,8 +63,8 @@ INGEST -> ANALYZE -> STRUCTURE -> WRITE -> VALIDATE -> DELIVER
 |---:|---|
 | 4.1 | Select the target section based on Run Mode. |
 | 4.2 | Re-read source documents relevant to the section. |
-| 4.3 | Write requirements using EARS syntax from `03-Requirement Writing Rules.md`. |
-| 4.4 | Apply output format, markers, status labels, and traceability. |
+| 4.3 | Write requirements using EARS syntax from `03-Requirement Writing Rules.md`, at the depth required by the domain's rigor level (`02-SRS Output Contract.md` Section 2.2.3). |
+| 4.4 | Apply output format, markers, status labels, and traceability. Write each item once: catalogues index items, details hold the content, and the RTM is regenerated from the items (`07-Traceability Workflow.md` Section 6). |
 | 4.5 | Set newly generated content to `DRAFT`. |
 | 4.6 | Write only to `<OutputLocation>`. |
 

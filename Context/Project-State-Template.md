@@ -20,6 +20,7 @@ The Agent reads this file first in every session and updates it at the end of ev
 | Output Language | `en` / `vi` / other ISO 639-1 code | `<Source>` |
 | Mandatory Keyword | `shall` (en) / `phải` (vi) / other | `<Source>` |
 | Assumption Policy | `ask` / `allow-minor` | `<Source>` |
+| OQ Blank Answer | `unanswered` (default) / `accept-recommendation`: meaning of an empty Decision field in `OQ-Answers.md` | `<Source>` |
 | Approver | `<Name or role>` | `<Source>` |
 | Reviewers | `<Names or roles, or None>` | `<Source>` |
 | Output Location | `<Confirmed path, default ProjectDocuments/<ProjectName>/>` | `<Source>` |
@@ -30,6 +31,14 @@ The Agent reads this file first in every session and updates it at the end of ev
 | Delivery Options | Backlog: yes / no; Release Plan: yes / no | `<Source>` |
 
 Every setting must come from the user or a cited source. The Agent must not fill a setting by inference; ask instead.
+
+### 1.2 Domain Rigor Register
+
+Filled in Stage S3 (`Agent/03-SRS/02-SRS Output Contract.md` Section 2.2). One row per requirement domain. The Agent recommends a level; the user confirms it.
+
+| Domain | Meaning | Drivers Present (D1-D8) | Evidence | Rigor | Confirmed |
+|---|---|---|---|---|---|
+| `<CODE>` | `<Domain meaning>` | `<For example: D1, D6, D7, or None>` | `<Source IDs or references>` | Light / Standard / Strict | `<Pending / YYYY-MM-DD by <name>>` |
 
 ## 2. Document Register
 
@@ -68,9 +77,11 @@ Each row is one document in the pipeline. Keep only the rows for documents in th
 
 ## 5. Open Questions Summary
 
-| Question ID | Question | Document | Blocking Stage | Status |
-|---|---|---|---|---|
-| OQ-GEN-001 | `<Question>` | BRS / BRD / StRS / PRD / SRS / Backlog / Release Plan | S1 / S2 / S3 / S4 / S5 / S6 | REVIEW |
+An index only. The question text, context, and resolution live in the owning document's Open Questions table. Open questions waiting for an answer are also listed in `OQ-Answers.md` (`Agent/01-Core/06-Human Interaction Protocol.md` Section 5.1).
+
+| Question ID | Owning Document | Blocking Stage | Status |
+|---|---|---|---|
+| OQ-GEN-001 | BRS / BRD / StRS / PRD / SRS / Backlog / Release Plan / Project State | S1 / S2 / S3 / S4 / S5 / S6 / Not blocking | OPEN / CLOSED |
 
 ## 6. Decisions Log
 

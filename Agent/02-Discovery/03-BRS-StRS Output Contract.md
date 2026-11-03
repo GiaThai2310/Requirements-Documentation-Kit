@@ -118,7 +118,7 @@ For a non-English Output Language, apply the language rule in `Agent/01-Core/05-
 - **Statement**: The <stakeholder> shall be able to <capability>.
 - **Stakeholder**: [STK or UCL ID]
 - **Priority**: Must / Should / Could / Won't
-- **Status**: DRAFT | REVIEW | APPROVED | DEPRECATED
+- **Status**: DRAFT | REVIEW | APPROVED (deprecated items move to the Deprecated Items register)
 - **Source**: [Source reference]
 - **Rationale**: [Why the stakeholder needs this]
 - **Parent**: [BG ID(s), or "None" with reason]

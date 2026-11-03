@@ -70,7 +70,7 @@ The Agent must re-read source content when:
 
 | Path | Rule |
 |---|---|
-| `Human/*` | Do not read unless the user asks to maintain or audit the kit. |
+| `User/*` | Do not read unless the user asks to maintain or audit the kit. |
 | `.git/*` | Do not read for requirements analysis. |
 | Unlisted files outside `Agent/`, `Context/`, and `<OutputLocation>` | Do not read unless the user explicitly references them. |
 

@@ -21,10 +21,10 @@ S0 Intake -> S1 Business -> S2 Stakeholder & Product -> S3 SRS Outline -> S4 SRS
 
 | Stage | Run Mode | Output (inside `<OutputLocation>/`) | Exit Gate |
 |---|---|---|---|
-| S0 Intake | Discovery | `00-Project-State.md` | Idea statement captured; Profile, Tier, Output Language, Approver, Assumption Policy, Document Set, and Output Location confirmed by the user |
+| S0 Intake | Discovery | `00-Project-State.md` | Idea statement captured; Profile, Tier, Output Language, Approver, Assumption Policy, OQ Blank Answer, Document Set, and Output Location confirmed by the user |
 | S1 Business | Discovery | `01-BRS.md` and/or `01-BRD.md` | All sections required for the depth exist; problem statement, business goals, and success criteria are `REVIEW` or `APPROVED`; BRS or BRD checks reported |
 | S2 Stakeholder & Product | Discovery | `02-StRS.md` and/or `02-PRD.md` | All sections required for the depth or variant exist; StRS or PRD checks reported |
-| S3 SRS Outline | Draft / Outline | `03-SRS.md` skeleton | User confirms structure |
+| S3 SRS Outline | Draft / Outline | `03-SRS.md` skeleton | User confirms the structure, the Domain Rigor Register, and the S4 run mode (Incremental or Full Generation) |
 | S4 SRS Incremental | Incremental / Full Generation | `03-SRS.md` | Each section `REVIEW` |
 | S5 Validation & Baseline | Audit / Validation | `Reports/Validation-Report-YYYY-MM-DD.md` | No open Critical findings; approver baselines the SRS |
 | S6 Delivery (optional) | Delivery | `04-Backlog.md`, `04-Release-Plan.md` | Delivery checks reported; approver confirms |
@@ -48,7 +48,7 @@ If the user explicitly wants to skip Discovery and has enough input for an SRS, 
 1. Read `Context/Context.md` if it exists. Treat it as P3 source material unless the user marks it as approved.
 2. Summarize the idea in one paragraph and ask the user to confirm the summary.
 3. Ask the S0 questions from `02-Elicitation Question Bank.md` that the context does not already answer, in batches of 3 to 5:
-   1. Project name, Profile, Tier, Output Language, Approver, Assumption Policy.
+   1. Project name, Profile, Tier, Output Language, Approver, Assumption Policy, OQ Blank Answer (`Q-INT-014`).
    2. **Document Set**: explain the layers and recommend a set for the profile (`09-Document Set And Output Location.md` Sections 3-4). If a layer has two documents, ask which is primary.
    3. **PRD questions** when a PRD is in the set: scope first, then whether the user wants user stories, a release plan, or a backlog (`05-PRD Output Contract.md` Section 2).
    4. **Output Location**: ask where to save the documents. If the user gives none, propose `ProjectDocuments/<ProjectName>/` and confirm the resolved path (`09-Document Set And Output Location.md` Section 7).
@@ -88,7 +88,7 @@ The interview loop is the step-by-step core of Discovery.
 4. Where helpful, offer concrete options and a recommendation, but always allow a free answer.
 5. After the user answers:
    1. Record each answer in the owning document with `Source: Discovery Interview, session YYYY-MM-DD, Q-<ID>`.
-   2. Mark anything still unknown with `[TBD: description]` and create a matching `OQ-GEN-NNN` entry.
+   2. Mark anything still unknown with `[TBD: description]`, create a matching `OQ-GEN-NNN` entry in the owning document, and add it to `OQ-Answers.md` (`Agent/01-Core/06-Human Interaction Protocol.md` Section 5.1).
    3. If an answer raises new ambiguity, add follow-up questions to the next batch.
 6. If the user answers "I don't know", offer: (A) leave as `[TBD]` and continue, (B) let the Agent propose an `[ASSUMPTION]` for confirmation, or (C) skip the item if it is optional for the profile.
 7. Repeat until the stage exit gate conditions are met, then ask for the gate decision.
@@ -99,6 +99,7 @@ The interview loop is the step-by-step core of Discovery.
 | Situation | Source Reference | Priority |
 |---|---|---|
 | User answer in an interview | `Discovery Interview, session YYYY-MM-DD, Q-BRS-001` | P1 |
+| User answer in the open question answer sheet | `OQ-Answers, YYYY-MM-DD, OQ-GEN-001` | P1 |
 | Content from `Context/Context.md` | `Context.md, <heading>` | P3 unless marked approved |
 | Approved BRS or BRD used downstream | `BRS v<version>, <ID>` or `BRD v<version>, <ID>` | P2 |
 | Approved StRS or PRD used downstream | `StRS v<version>, <ID>` or `PRD v<version>, <ID>` | P2 |
@@ -121,4 +122,4 @@ At the start of every session, the Agent locates the project's `00-Project-State
 - Project profiles: `Agent/01-Core/08-Project Profiles.md`
 - Human interaction: `Agent/01-Core/06-Human Interaction Protocol.md`
 - Run modes: `Agent/01-Core/02-Run Modes.md`
-- Templates: `Context/BRS-Template.md`, `Context/BRD-Template.md`, `Context/StRS-Template.md`, `Context/PRD-Template.md`, `Context/Project-State-Template.md`
+- Templates: `Context/BRS-Template.md`, `Context/BRD-Template.md`, `Context/StRS-Template.md`, `Context/PRD-Template.md`, `Context/Project-State-Template.md`, `Context/OQ-Answers-Template.md`

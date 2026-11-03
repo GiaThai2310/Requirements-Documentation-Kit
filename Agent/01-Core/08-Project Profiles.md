@@ -4,11 +4,16 @@
 
 This file defines the **Project Profile**, the governance axis of the kit. A profile describes *who* builds and approves the work (one person, a team, or a business). It controls approval roles, document control, change control formality, and the depth of the BRS and StRS.
 
-The profile is independent from the **Tier** (Tier 1-3, defined in `Agent/03-SRS/02-SRS Output Contract.md`), which describes *technical complexity* and controls which SRS sections are required.
+The profile is independent from the two other tailoring axes, both defined in `Agent/03-SRS/02-SRS Output Contract.md` Section 2:
+
+- **Tier** (Tier 1-3): the *scale* of the product. It controls which SRS sections are required.
+- **Domain Rigor** (`Light`, `Standard`, `Strict` per domain): the *complexity* of each requirement domain. It controls how deeply each domain is specified.
 
 ```text
-Profile (governance)  x  Tier (complexity)  ->  tailored document set
+Profile (governance)  x  Tier (scale)  x  Domain Rigor (complexity per domain)  ->  tailored document set
 ```
+
+The profile never sets the depth of a domain. A personal project can contain a `Strict` domain, and an SME project can contain `Light` domains.
 
 Basis:
 
@@ -82,17 +87,20 @@ When the product processes personal data, or always for the `SME` profile, the A
 | Tier | 1 / 2 / 3 |
 | Output Language | en / vi / other ISO 639-1 code |
 | Assumption Policy | ask / allow-minor |
+| OQ Blank Answer | unanswered / accept-recommendation |
 | Approver | <name or role> |
 | Reviewers | <names or roles, or None> |
 | Document Set | <documents chosen by the user> |
 | Output Location | <confirmed path> |
 ```
 
+The Domain Rigor Register is recorded in Stage S3 in `00-Project-State.md` Section 1.2.
+
 ## 8. Cross-References
 
 - Human interaction and approval: `Agent/01-Core/06-Human Interaction Protocol.md`
 - Discovery workflow: `Agent/02-Discovery/01-Discovery Workflow.md`
 - BRS and StRS tailoring: `Agent/02-Discovery/03-BRS-StRS Output Contract.md`
-- SRS tier tailoring: `Agent/03-SRS/02-SRS Output Contract.md`
+- SRS tier and domain rigor tailoring: `Agent/03-SRS/02-SRS Output Contract.md`
 - Document set and output location: `Agent/01-Core/09-Document Set And Output Location.md`
 - Project state template: `Context/Project-State-Template.md`

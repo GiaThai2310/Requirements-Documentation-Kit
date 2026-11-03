@@ -53,8 +53,9 @@ Before patching, the Agent must:
 2. Consult the SRS traceability matrix, StRS traceability (Section 9), PRD feature and story links, backlog and release plan references, or dependency records.
 3. Identify directly affected requirements.
 4. Identify indirectly affected requirements.
-5. Check for conflicts with approved or review-bound content.
-6. Identify validation checks required after the patch.
+5. When the change replaces something the documents assume, run a Premise Sweep (`07-Traceability Workflow.md` Section 10) across every document in the Document Set and include its result.
+6. Check for conflicts with approved or review-bound content.
+7. Identify validation checks required after the patch.
 
 Impact report format:
 
@@ -73,6 +74,13 @@ Impact report format:
 
 | ID | Section | Relationship | Potential Impact |
 |---|---|---|---|
+
+### Premise-Affected Items
+
+Old premise: [one sentence] / New premise: [one sentence], or "No premise changes".
+
+| Item | Location | Text Expressing The Old Premise | Classification | Action |
+|---|---|---|---|---|
 
 ### Conflict Assessment
 [CONFLICT findings or "None"]
@@ -107,7 +115,7 @@ After authorization, the Agent must:
 > [CHANGE] Changed by CR-GEN-001 (YYYY-MM-DD): [Brief description].
 ```
 
-4. Retain deprecated requirements with `DEPRECATED` status and a replacement reference when applicable.
+4. For each item to deprecate: copy its full current text into this CR file (Directly Affected Items, `Current State`), remove it from the document body, and add a row to the Deprecated Items register with the replacement reference (`Agent/01-Core/05-Output Rules.md` Section 6.1).
 5. Assign new IDs using `<TYPE>-<DOMAIN>-<NNN>`.
 
 ## 8. Step 5 - Validate Patch
@@ -115,7 +123,8 @@ After authorization, the Agent must:
 Run:
 
 - Micro Validation on all changed requirements.
-- Traceability checks for changed links.
+- Traceability checks for changed links, including references to deprecated IDs.
+- A check that every `Must change` item of the Premise Sweep was updated.
 - Consistency checks for affected sections.
 - Status checks to ensure the Agent did not set `APPROVED`.
 

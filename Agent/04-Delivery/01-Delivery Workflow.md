@@ -21,7 +21,7 @@ This document defines Stage S6 (Delivery), which is **optional**. It produces a 
 ### 1.2 Boundaries
 
 - The kit specifies **what** will be delivered and in which order. It does not manage sprints, task assignment, or execution progress.
-- Item `Status` uses the kit status model (`DRAFT`, `REVIEW`, `APPROVED`, `DEPRECATED`) and describes the approval state of the item definition, not whether work is done.
+- Item `Status` uses the kit status model (`DRAFT`, `REVIEW`, `APPROVED`; deprecated items move to the Deprecated Items register in Section 7.1) and describes the approval state of the item definition, not whether work is done.
 - **The Agent never invents dates, estimates, team capacity, velocity, or release cadence.** It may propose options, but it records them only after the user provides or confirms them. Unknown values stay `[TBD]` with an Open Question.
 
 ## 2. Entry Conditions

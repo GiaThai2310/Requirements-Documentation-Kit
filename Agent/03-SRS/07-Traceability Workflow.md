@@ -45,10 +45,7 @@ Examples:
 | Milestone | `MS-GEN-001` |
 | Data Entity | `ENT-DATA-001` |
 | Data Relationship | `REL-DATA-001` |
-| Physical Table | `TBL-DATA-001` |
-| Table Column | `COL-DATA-001` |
 | Entity Attribute | `ATTR-DATA-001` |
-| Data Item | `DATA-DATA-001` |
 | Data Validation Rule | `VAL-DATA-001` |
 | Data Migration Item | `MIG-DATA-001` |
 
@@ -57,7 +54,7 @@ Rules:
 1. Assign IDs when the item is created.
 2. Never reuse or reassign IDs.
 3. Sequence numbers increment within each type-domain pair.
-4. Deprecated IDs remain in the document.
+4. Deprecated IDs leave the document body and remain in the document's Deprecated Items register (`Agent/01-Core/05-Output Rules.md` Section 6.1).
 5. Domain codes must remain stable.
 
 ## 3. Recommended Domain Codes
@@ -127,10 +124,7 @@ If a new domain is needed, propose it to the user and ask for confirmation unles
 | CON | Required | Optional | Recommended |
 | ENT | Required | Recommended | Recommended |
 | REL | Required | Recommended | Recommended |
-| TBL | Required | Recommended | Recommended |
-| COL | Required | Recommended | Recommended |
 | ATTR | Required | Recommended | Recommended |
-| DATA | Required | Recommended | Recommended |
 | VAL | Required | Optional | Recommended |
 | MIG | Required | Optional | Recommended |
 
@@ -138,26 +132,22 @@ If a new domain is needed, propose it to the user and ask for confirmation unles
 
 Maintain an RTM in SRS Section 16 or `<OutputLocation>/Traceability-Matrix.md`.
 
-```markdown
-| ID | Title | Source | Source Location | Upstream (STR/BG) | Parent | Related Feature/UC | Verification | Status |
-|---|---|---|---|---|---|---|---|---|
-| FR-AUTH-001 | Email format validation | Client Brief v2.1 | Section 3.1 | STR-AUTH-001 / BG-GEN-001 | F-AUTH-001 | UC-AUTH-001 | AC-AUTH-001 | DRAFT |
-| NFR-PERF-001 | Search response time | Direct Prompt | Session YYYY-MM-DD | STR-QUAL-001 / BG-GEN-002 | None | F-SRCH-001 | AC-PERF-001 | DRAFT |
-```
-
-Maintain data traceability in SRS Section 9.11 when data artifacts are present.
+The RTM is a derived view, not a second copy of the requirements. The Agent regenerates it from the `Source`, `Parent`, and verification fields of the active items whenever items are created, changed, or deprecated, and never edits rows by hand. Title, source location, and status are not repeated; they live in the items.
 
 ```markdown
-| Data Item | Source | Entity/Table | Used By Feature | Used By Requirement | Validation Rule | Retention Rule | Migration Rule |
-|---|---|---|---|---|---|---|---|
-| DATA-DATA-001 | Client Brief v2.1 | ENT-DATA-001 / TBL-DATA-001 | F-DATA-001 | FR-DATA-001 | VAL-DATA-001 | Retain 7 years | MIG-DATA-001 |
+| ID | Upstream (STR/F/US/BG) | Parent (F/UC) | Verification |
+|---|---|---|---|
+| FR-AUTH-001 | STR-AUTH-001 / BG-GEN-001 | F-AUTH-001, UC-AUTH-001 | Test; AC 1-2 |
+| NFR-PERF-001 | STR-QUAL-001 / BG-GEN-002 | None | Test; measurement method in the item |
 ```
+
+Data traceability uses the `Related Features` and `Related Requirements` columns of the entity table (SRS Section 9.2.1) and the `Related Rules` column of the attribute table (SRS Section 9.3). No separate data traceability matrix is kept.
 
 ## 7. RTM Maintenance Rules
 
-- Update the RTM whenever a requirement is created, changed, deprecated, or renumbered.
-- Do not remove deprecated IDs from the RTM.
-- Record change request IDs when a CR modifies a requirement.
+- Regenerate the RTM whenever a requirement is created, changed, deprecated, or renumbered.
+- The RTM lists active items only. Deprecated IDs are kept in the Deprecated Items register, not in the RTM.
+- Record change request IDs in the changed item's `[CHANGE]` annotation, not in the RTM.
 - During validation, compare the RTM against the actual SRS body.
 
 ## 8. Orphan Detection
@@ -169,18 +159,46 @@ Maintain data traceability in SRS Section 9.11 when data artifacts are present.
 | No Parent | Functional requirement lacks feature, goal, or use case trace. | Warning |
 | No Upstream | When a StRS or PRD exists, an SRS requirement lacks an `STR`, `F`, or `US` trace and is not marked as derived. | Critical |
 | No Business Goal | A stakeholder requirement lacks a `BG` trace without a recorded reason. | Warning |
-| Dead Link | Referenced ID does not exist or is deprecated without replacement. | Critical |
-| Unmapped Data | Data item lacks entity/table, source, or related requirement trace. | Warning |
+| Dead Link | Referenced ID does not exist, or is deprecated (an active item must reference the replacement). | Critical |
+| Unmapped Data | An entity or attribute lacks a source or a related requirement. | Warning |
 
 ## 9. Orphan Resolution
 
 1. No Source: ask the user for a source. Use `[ASSUMPTION]` only as the Assumption Policy permits.
 2. No Verification: write or request acceptance criteria.
 3. No Parent: map to a feature, or ask the user which feature or goal it serves.
-4. Dead Link: repair the reference or document deprecation replacement.
+4. Dead Link: repair the reference, or point it to the replacement listed in the Deprecated Items register.
 5. No Upstream: map to an `STR`, `F`, or `US`, ask whether the StRS or PRD is missing a need, or mark as derived with rationale (for example, a requirement derived from a constraint or a design decision).
 
-## 10. Source Reference Format
+## 10. Premise Sweep
+
+Links between IDs do not show every item that depends on a decision. A use case precondition, an acceptance criterion's `Given` clause, or an error message can state an assumption in words without referencing the decision that created it. When that assumption changes, an ID-based impact analysis misses those items. The Premise Sweep finds them.
+
+### 10.1 When To Run
+
+Run a Premise Sweep whenever a decision changes something the documents already assume:
+
+1. A change request is analyzed (`06-Change Request Workflow.md` Step 2).
+2. A human decision or an answer to an Open Question changes existing content (`Agent/01-Core/06-Human Interaction Protocol.md` Section 6), including answers applied from `OQ-Answers.md`.
+3. Macro Validation runs (`05-Macro Validation.md` CC10): every decision recorded since the previous validation must have been swept.
+
+### 10.2 Procedure
+
+1. **State the premises.** Write the old premise and the new premise as one sentence each. Example: old "Each user belongs to exactly one organization"; new "Each user has a personal workspace and may belong to several organizations".
+2. **List the expressions of the old premise.** Note the terms, roles, conditions, and phrasings through which the old premise appears (for example "member of the organization", "the organization of the user", "MFA code", "OTP").
+3. **Search every document in the Document Set** for those expressions, not only for linked IDs. Check in particular: use case preconditions, triggers, and postconditions; acceptance criteria (`Given` clauses); requirement statements; business rules; error messages and error catalogue entries; interface descriptions; glossary entries; actor and user class definitions; state models and diagrams.
+4. **Classify each hit**: `Must change` (contradicts the new premise), `Check` (may be affected), or `Unaffected` (with a reason).
+5. **Record the result** in the impact analysis, or in the decision record when no change request exists, as a "Premise-affected items" table:
+
+```markdown
+| Item | Location | Text Expressing The Old Premise | Classification | Action |
+|---|---|---|---|---|
+| UC-CTR-001 | SRS 6.2, Preconditions | "The user is a member of an organization" | Must change | Rewrite for personal and organization workspaces |
+```
+
+6. **Apply** the changes together with the decision. Items classified `Check` are confirmed with the user when the outcome is not clear from the sources.
+
+## 11. Source Reference Format
 
 Use this format:
 
@@ -198,9 +216,10 @@ Examples:
 | Discovery Interview | `Discovery Interview, session YYYY-MM-DD, Q-BRS-001` |
 | Upstream Document Item | `BRS v0.2, BG-GEN-001`, `BRD v0.2, TRN-DATA-001`, `StRS v0.3, STR-BOOK-002`, or `PRD v0.4, US-BOOK-003` |
 | Approved Document | `Approved BRD v1.0, Section 5.2` |
+| Open Question Answer Sheet | `OQ-Answers, YYYY-MM-DD, OQ-AUTH-001` |
 | Agent Assumption | `[ASSUMPTION] Domain inference with reasoning; accepted by user YYYY-MM-DD` |
 
-## 11. Cross-References
+## 12. Cross-References
 
 - Output rules: `Agent/01-Core/05-Output Rules.md`
 - Source priority: `Agent/01-Core/04-Source Priority.md`

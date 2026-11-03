@@ -48,6 +48,9 @@ Basis:
 | Q-INT-011 | You chose two documents for the same layer. Which one should be the main source? | Example: BRD as the main document, BRS references it. | Project State: Primary Per Layer | C | C | C |
 | Q-INT-012 | What should the PRD cover: the whole product, one release, or one feature? | Ask only when a PRD is in the Document Set. | Project State: PRD Scope | C | C | C |
 | Q-INT-013 | Do you want user stories, a release plan, or a product backlog? | Any "yes" means a Standard PRD; "no" to all means a Lean PRD. A backlog or release plan is added as a separate document. | Project State: PRD Variant, Delivery Options | C | C | C |
+| Q-INT-014 | I collect open questions in a sheet (`OQ-Answers.md`) where you write your decisions. If you leave a decision empty, should I treat it as not answered yet, or as agreeing with my recommendation? | Options: `unanswered` (default, safer) / `accept-recommendation` (faster, but an unread recommendation may be applied). | Project State: OQ Blank Answer | A | A | A |
+
+Domain Rigor is not asked in Stage S0. The requirement domains are known only after the product layer, so the Agent proposes the Domain Rigor Register in Stage S3 (`Agent/03-SRS/02-SRS Output Contract.md` Section 2.2).
 
 ## 5. Stage S1 - BRS Questions
 

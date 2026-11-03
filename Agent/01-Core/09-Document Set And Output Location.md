@@ -47,7 +47,7 @@ Delivery documents (Backlog, Release Plan) are never recommended by default. The
 
 ## 5. No-Duplication Rules
 
-Each piece of content has exactly one owner document. Other documents reference it by ID.
+Each piece of content has exactly one owner document. Other documents reference it by ID. Within one document, each item is also written once: catalogues and indexes list IDs, and the RTM is regenerated from the items. `OQ-Answers.md` is a working copy of open questions for answering; the owning document's Open Questions table stays the record.
 
 ### 5.1 Ownership When Only One Document Exists In A Layer
 
@@ -95,6 +95,7 @@ Files use fixed names. The numeric prefix shows the layer, so two documents in t
 | SRS | `03-SRS.md` |
 | Backlog | `04-Backlog.md` |
 | Release Plan | `04-Release-Plan.md` |
+| Open question answer sheet | `OQ-Answers.md` |
 | Reports | `Reports/<Report-Name>-YYYY-MM-DD.md` |
 | Change Requests | `Change-Requests/CR-<DOMAIN>-<NNN>.md` |
 
@@ -120,7 +121,7 @@ In all kit files, `<OutputLocation>` means this confirmed path.
 ### 7.2 Write Boundary
 
 - The Agent may create and modify files only inside `<OutputLocation>`.
-- The Agent must not accept an Output Location inside `Agent/`, `Context/`, or `Human/`. Ask for another path.
+- The Agent must not accept an Output Location inside `Agent/`, `Context/`, or `User/`. Ask for another path.
 - If the chosen folder already contains files, list them and ask before writing into the folder. Never overwrite an existing file without explicit confirmation.
 - If the chosen folder is inside a git repository and is not ignored by `.gitignore`, mention once that the documents may be committed and shared, and ask whether to continue.
 - Absolute paths outside the working directory are allowed only when the user gives them explicitly.

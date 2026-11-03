@@ -111,7 +111,7 @@ Required attributes:
 - **Timing**: [Transition event or date range confirmed by the user]
 - **Ends When**: [Condition after which the requirement no longer applies]
 - **Priority**: Must / Should / Could / Won't
-- **Status**: DRAFT | REVIEW | APPROVED | DEPRECATED
+- **Status**: DRAFT | REVIEW | APPROVED (deprecated items move to the Deprecated Items register)
 - **Source**: [Source reference]
 - **Verification Method**: Test / Analysis / Inspection / Demonstration
 - **Notes**: [Markers or None]

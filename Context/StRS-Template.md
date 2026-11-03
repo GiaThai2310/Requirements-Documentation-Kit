@@ -252,7 +252,7 @@ By reference to BRS Section 7. Add only constraints discovered during stakeholde
 
 | Question ID | Question | Context | Affected Sections | Owner | Due Date | Status | Resolution |
 |---|---|---|---|---|---|---|---|
-| OQ-GEN-001 | `<Question>` | `<Context>` | `<Sections or IDs>` | `<Owner>` | `YYYY-MM-DD` | REVIEW | |
+| OQ-GEN-001 | `<Question>` | `<Context>` | `<Sections or IDs>` | `<Owner>` | `YYYY-MM-DD` | OPEN | |
 
 ### 8.2 Decisions
 
@@ -265,6 +265,14 @@ By reference to BRS Section 7. Add only constraints discovered during stakeholde
 | Risk ID | Risk | Cause | Impact | Probability | Severity | Mitigation | Owner | Status |
 |---|---|---|---|---|---|---|---|---|
 | RISK-GEN-001 | `<Risk>` | `<Cause>` | `<Impact>` | Low / Medium / High | Low / Medium / High | `<Mitigation>` | `<Owner>` | DRAFT |
+
+### 8.4 Deprecated Items
+
+Deprecated items are removed from the body of the document and recorded here, one row each (`Agent/01-Core/05-Output Rules.md` Section 6.1). Deprecated IDs are never reused.
+
+| ID | Title | Deprecated Date | Reason | Replaced By |
+|---|---|---|---|---|
+| `<Item ID>` | `<Title>` | `YYYY-MM-DD` | `<DEC or CR ID>` | `<Replacement ID or None>` |
 
 ## 9. Stakeholder Requirements Traceability
 

@@ -61,9 +61,9 @@ The Agent must halt in these situations.
 
 **Required behavior**:
 
-1. Do not delete approved or historical requirements.
-2. Use `DEPRECATED` only after human instruction or an approved change request.
-3. Retain audit annotations.
+1. Do not delete an item without recording it: use `DEPRECATED` only after human instruction or an approved change request.
+2. Move the deprecated item from the document body to the Deprecated Items register, and keep its full previous text in the change request file or version history (`05-Output Rules.md` Section 6.1).
+3. Retain audit annotations and never reuse the ID.
 
 ### 2.6 Scope Ambiguity
 
@@ -77,7 +77,7 @@ The Agent must halt in these situations.
 
 ### 2.7 Unconfirmed Project Settings
 
-**Trigger**: The Project Profile, Tier, Output Language, Approver, Assumption Policy, Document Set, primary document of a layer, PRD scope or variant, Delivery options, or Output Location is unknown, unclear, or contradicted by new information.
+**Trigger**: The Project Profile, Tier, Domain Rigor of a domain, Output Language, Approver, Assumption Policy, OQ Blank Answer, Document Set, primary document of a layer, PRD scope or variant, Delivery options, S4 run mode, or Output Location is unknown, unclear, or contradicted by new information.
 
 **Required behavior**:
 
@@ -157,18 +157,44 @@ Rules:
 1. Ask only what is needed for the current stage or task.
 2. Do not ask for information that a source already answers clearly.
 3. Always allow a free answer and an "I don't know" answer. For "I don't know", offer to leave `[TBD]`, propose an assumption for confirmation, or skip if optional for the profile.
-4. Record every unanswered question as an Open Question (`OQ-<DOMAIN>-<NNN>`) in the active document and in `00-Project-State.md`.
+4. Record every unanswered question as an Open Question (`OQ-<DOMAIN>-<NNN>`) in the active document, index it in `00-Project-State.md` Section 5, and add it to `OQ-Answers.md` (Section 5.1).
 5. Continue with parts of the work that do not depend on the unanswered questions, unless a Halt condition applies.
+
+### 5.1 Open Question Answer Sheet (`OQ-Answers.md`)
+
+Open questions stay in the Open Questions table of the document that owns them; that table is the record. `<OutputLocation>/OQ-Answers.md` is a working sheet where the user answers every open question in one place instead of searching through the documents. It is created from `Context/OQ-Answers-Template.md`.
+
+**Content.** One entry per `OPEN` question, grouped by blocking stage and ordered from most to least blocking. Each entry has: the OQ ID and owning document, the question in plain language, why it is asked, the affected items (IDs and sections in every document), the options, the Agent's recommendation with reasoning, a `Decision` field for the user, and a `Notes` field for the user.
+
+**Agent writes the sheet:**
+
+1. When the first open question exists, create the sheet. Whenever an open question is added or its context changes, update its entry in the same turn.
+2. Keep only `OPEN` questions in the main part. Do not fill the `Decision` or `Notes` fields.
+3. Keep a copy of what the Agent wrote (the sheet as last written by the Agent, in the session context or the version history) so that user edits can be detected.
+4. Still ask the most blocking questions in the conversation using the Clarification Question format; the sheet does not replace asking.
+
+**User answers.** The user fills `Decision` (and optionally `Notes`). The user may also edit the question or the recommendation text directly.
+
+**Agent applies the answers** when the user says the sheet is filled:
+
+1. Read the sheet and compare it with the version the Agent last wrote. List every entry where the user changed the question, the options, or the recommendation, and treat the edited text as the user's intent.
+2. Interpret empty `Decision` fields according to the `OQ Blank Answer` setting in `00-Project-State.md`: `unanswered` (default) leaves the question `OPEN`; `accept-recommendation` applies the recommendation as written in the sheet. If the setting is missing, ask.
+3. Summarize how each answer will be applied. Ask again about any answer that is ambiguous or that contradicts another answer or an approved item; do not apply those until clarified.
+4. Apply the answers through the Post-Decision Protocol (Section 6), including the Premise Sweep.
+5. Move applied entries to the `Applied Answers` part of the sheet with the date, the resulting `DEC` ID or the resolution, and close the questions in the owning documents.
+
+Answers in the sheet are P1 sources, cited as `OQ-Answers, YYYY-MM-DD, OQ-<DOMAIN>-<NNN>`.
 
 ## 6. Post-Decision Protocol
 
 After the human provides a decision or answer:
 
 1. Record it in the Decisions table, the relevant change request log, or the target document with a P1 source reference.
-2. Apply it only to affected sections.
-3. Update markers from `[TBD]` or `[CONFLICT]` to resolved annotations where appropriate, and close the matching Open Question.
-4. Set affected Agent-edited items to `REVIEW` unless the approver explicitly instructs the Agent to record `APPROVED`.
-5. Update `00-Project-State.md` (current stage, next step, open questions).
+2. If the decision replaces something the documents already assume, run a Premise Sweep (`Agent/03-SRS/07-Traceability Workflow.md` Section 10) across every document in the Document Set and record its result with the decision.
+3. Apply it only to affected sections, including every `Must change` item of the Premise Sweep.
+4. Update markers from `[TBD]` or `[CONFLICT]` to resolved annotations where appropriate, close the matching Open Question (`CLOSED` with a resolution), and move its entry in `OQ-Answers.md` to `Applied Answers`.
+5. Set affected Agent-edited items to `REVIEW` unless the approver explicitly instructs the Agent to record `APPROVED`.
+6. Update `00-Project-State.md` (current stage, next step, open questions).
 
 ## 7. Approval Rule
 
@@ -185,6 +211,7 @@ The Agent may proceed without asking first only for these low-risk actions:
 | Cross-priority conflict | Apply the higher-priority source, annotate `[CONFLICT]`, and report it to the user. |
 | Formatting correction | Correct format without changing meaning. |
 | Validation report generation | Generate a report in `<OutputLocation>/Reports/` without modifying the documents. |
+| Open question answer sheet upkeep | Create or update `OQ-Answers.md` entries for open questions, without filling `Decision` or `Notes`. |
 
 ## 9. Decision Flow
 
