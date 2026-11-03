@@ -1,12 +1,11 @@
 name: Publish to NPM and GitHub Release
 
+# Runs only when a version tag (v*) is pushed. Pushing to main, publishing a
+# release by hand, or starting the workflow manually does not publish anything.
 on:
   push:
     tags:
       - 'v*'
-  release:
-    types: [published]
-  workflow_dispatch:
 
 jobs:
   publish:
@@ -24,16 +23,35 @@ jobs:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Check tag matches package.json version
+        run: |
+          PKG_VERSION="v$(node -p "require('./package.json').version")"
+          if [ "$PKG_VERSION" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $PKG_VERSION"
+            exit 1
+          fi
+
+      - name: Check whether this version is already on npm
+        id: npm_check
+        run: |
+          NAME="$(node -p "require('./package.json').name")"
+          VERSION="$(node -p "require('./package.json').version")"
+          if npm view "$NAME@$VERSION" version > /dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$NAME@$VERSION is already on npm; skipping npm publish"
+          else
+            echo "published=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish to NPM
+        if: steps.npm_check.outputs.published == 'false'
         run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
-        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
