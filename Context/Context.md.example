@@ -18,7 +18,7 @@ Describe the idea in two or three sentences: what it is, who it is for, and why 
 |---|---|---|
 | Project Name | | A working name is fine. |
 | Project Profile | | `PERSONAL` (only you), `TEAM` (2+ people building together), `SME` (a business or start-up). |
-| Complexity Tier | | `1` small (up to 3 user types, up to 10 features), `2` medium, `3` large or regulated. Leave empty if unsure. |
+| Complexity Tier | | `0` MVP (up to 2 user types, up to 5 simple features, no external services), `1` small (up to 3 user types, up to 10 features), `2` medium, `3` large or regulated. Leave empty if unsure. |
 | Output Language | | `en`, `vi`, or another language. IDs and statuses stay in English. |
 | Approver | | Who approves the documents. For PERSONAL, usually you. |
 | Reviewers | | Who reviews the documents, or None. |

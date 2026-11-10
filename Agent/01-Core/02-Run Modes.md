@@ -126,7 +126,7 @@ Before selecting a mode, the Agent must inspect:
 | SRS requested but SRS mandatory inputs are missing | Switch to Discovery Mode, or produce the Fatal Gap Questionnaire if the user declines. |
 | The correct mode or scope is unclear | Ask the user; recommend a mode. |
 | Same-priority source conflict | Switch to Audit Mode, document conflict, halt. |
-| More than 30 percent TBD density in a section | Switch to Audit Mode, produce gap report, halt. |
+| More than 30 percent TBD density in a section (`06-Human Interaction Protocol.md` Section 2.3) | Switch to Audit Mode, produce gap report, halt. |
 | User introduces a change to existing requirements | Switch to Change Request / Patch Mode. |
 | User asks for a backlog or release plan | Confirm it is added to the Document Set, then switch to Delivery Mode when its entry conditions are met. |
 

@@ -40,6 +40,7 @@
     "Agent",
     "Context",
     "User",
+    "Skills",
     "bin"
   ]
 }

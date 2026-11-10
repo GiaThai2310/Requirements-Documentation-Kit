@@ -6,7 +6,7 @@ This file defines the **Project Profile**, the governance axis of the kit. A pro
 
 The profile is independent from the two other tailoring axes, both defined in `Agent/03-SRS/02-SRS Output Contract.md` Section 2:
 
-- **Tier** (Tier 1-3): the *scale* of the product. It controls which SRS sections are required.
+- **Tier** (Tier 0-3): the *scale* of the product. It controls which SRS sections are required.
 - **Domain Rigor** (`Light`, `Standard`, `Strict` per domain): the *complexity* of each requirement domain. It controls how deeply each domain is specified.
 
 ```text
@@ -84,7 +84,7 @@ When the product processes personal data, or always for the `SME` profile, the A
 | Field | Value |
 |---|---|
 | Project Profile | PERSONAL / TEAM / SME |
-| Tier | 1 / 2 / 3 |
+| Tier | 0 / 1 / 2 / 3 |
 | Output Language | en / vi / other ISO 639-1 code |
 | Assumption Policy | ask / allow-minor |
 | OQ Blank Answer | unanswered / accept-recommendation |

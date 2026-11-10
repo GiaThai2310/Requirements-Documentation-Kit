@@ -38,7 +38,7 @@ Basis:
 | Q-INT-001 | What is the project name? | A working name is fine. | Project State: Project Name | A | A | A |
 | Q-INT-002 | Describe the idea in two or three sentences: what it is, who it is for, and why it matters. | "Explain it like you would to a friend." | Project State: Idea Statement | A | A | A |
 | Q-INT-003 | Who is building and deciding on this product: only you, a team, or a business or start-up? | Options: PERSONAL / TEAM / SME. | Project State: Project Profile | A | A | A |
-| Q-INT-004 | Roughly how many types of users, main features, and external integrations do you expect? Are there legal or industry regulations? | Used to recommend Tier 1, 2, or 3. | Project State: Tier | A | A | A |
+| Q-INT-004 | Roughly how many types of users and main features do you expect? Are any features complicated, such as calculations or strict rules? Does the product need external services, such as cloud services to set up, email delivery, or third parties? Are there legal or industry regulations? | Used to recommend Tier 0, 1, 2, or 3 from all these factors together. | Project State: Tier | A | A | A |
 | Q-INT-005 | In which language should the documents be written? | IDs and statuses stay in English. | Project State: Output Language | A | A | A |
 | Q-INT-006 | Who approves the documents, and who reviews them? | For PERSONAL, this is usually you. | Project State: Approver, Reviewers | A | A | A |
 | Q-INT-007 | When information is missing, should I always ask you, or may I propose minor assumptions for you to confirm later? | Options: `ask` (default) / `allow-minor`. | Project State: Assumption Policy | A | A | A |

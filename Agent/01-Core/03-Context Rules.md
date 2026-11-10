@@ -72,7 +72,7 @@ The Agent must re-read source content when:
 |---|---|
 | `User/*` | Do not read unless the user asks to maintain or audit the kit. |
 | `.git/*` | Do not read for requirements analysis. |
-| Unlisted files outside `Agent/`, `Context/`, and `<OutputLocation>` | Do not read unless the user explicitly references them. |
+| Unlisted files outside `Agent/`, `Context/`, and `<OutputLocation>` | Do not read unless the user explicitly references them, the file is in the Source Register (`00-Project-State.md` Section 1.3), or the user runs the `/rdk` command, whose project scan is read-only. |
 
 ## 7. Context Budget Guidance
 

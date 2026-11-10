@@ -20,17 +20,23 @@ Depth is never limited by document length, page count, team size, or schedule. I
 
 ### 2.1 Tier (Scale)
 
-| Tier | Criteria | Typical Projects |
-|---|---|---|
-| Tier 1 - Small | Up to 3 user classes, up to 10 features, single platform, no regulatory burden | Internal tools, MVPs, prototypes |
-| Tier 2 - Medium | 4-8 user classes, 11-30 features, integrations or multiple platforms | SaaS products, e-commerce, mid-size enterprise apps |
-| Tier 3 - Large | 9 or more user classes, more than 30 features, compliance or multi-system integration | Healthcare, fintech, government, ERP |
+| Factor | Tier 0 - MVP | Tier 1 - Small | Tier 2 - Medium | Tier 3 - Large |
+|---|---|---|---|---|
+| User classes | Up to 2 | Up to 3 | 4-8 | 9 or more |
+| Features | Up to 5 | Up to 10 | 11-30 | More than 30 |
+| Feature complexity | Simple: no domain is expected to need `Strict` | Any | Any | Any |
+| External dependencies | None: no cloud service to set up, no email or SMS delivery, no third-party service | A few services | Integrations with other systems | Multi-system integration |
+| Platforms | One | One | One or several | Several |
+| Regulation | None | None | Some obligations | Compliance is a main concern |
+| Typical projects | Prototypes, proofs of concept, MVPs that test an idea | Internal tools, small products | SaaS products, e-commerce, mid-size enterprise apps | Healthcare, fintech, government, ERP |
+
+Judge all factors together. Recommend the lowest Tier that fits every factor, so a single factor above a Tier's limit moves the recommendation up. For example, four simple features that need email delivery and a payment service are not Tier 0. The user decides.
 
 The Tier decides which sections exist (Section 3). It does not decide how deeply a domain is written; Domain Rigor does. A Tier 2 product can have `Light` domains, and a Tier 1 product can have a `Strict` domain.
 
 The Tier is confirmed by the user in Stage S0 and recorded in `00-Project-State.md`. If the Tier is unknown or unclear, the Agent must not default to a tier. It asks the user, presents the criteria above, and recommends a tier with reasoning (`Agent/01-Core/06-Human Interaction Protocol.md` Section 2.7).
 
-If the actual scope grows beyond the recorded Tier (for example, more features than the Tier allows), ask the user whether to change the Tier.
+If the actual project grows beyond the recorded Tier (for example, more features than the Tier allows, or a Tier 0 product gains a `Strict` domain or an external service), ask the user whether to change the Tier. If the user keeps the Tier, Domain Rigor still applies in full.
 
 ### 2.2 Domain Rigor (Complexity)
 
@@ -84,42 +90,46 @@ Rigor never removes a mandatory quality characteristic. Every requirement at eve
 Legend:
 
 - `R` = Required.
-- `C` = Conditional or recommended.
-- `O` = Optional.
+- `C` = Include only when the project has content for the section.
+- `O` = Omit by default. Include it only when the user asks, or when the Agent recommends it with a reason specific to this project and the user agrees.
 - `X` = Skip unless the human requests it.
 
-| Section | Tier 1 | Tier 2 | Tier 3 |
-|---|:-:|:-:|:-:|
-| 0. Document Control | O | R | R |
-| 1. Introduction | R | R | R |
-| 2. Overall Description | R | R | R |
-| 3. Stakeholders, Actors and External Systems | C | R | R |
-| 4. Business Context | C | R | R |
-| 5. Product Features | R | R | R |
-| 6. Use Case Specifications | O | R | R |
-| 7. Business Rules | O | R | R |
-| 8. Functional Requirements | R | R | R |
-| 9. Data Requirements And Data Model | O | R | R |
-| 10. External Interface Requirements | C | R | R |
-| 11. Non-functional Requirements | C | R | R |
-| 12. Access Control Requirements | O | R | R |
-| 13. State Models | X | C | R |
-| 14. Error Handling and Edge Cases | O | R | R |
-| 15. Acceptance Criteria and Verification | C | R | R |
-| 16. Requirements Traceability | X | R | R |
-| 17. Open Questions, Decisions and Risks | R | R | R |
-| 18. Appendices | O | R | R |
-| 19. Requirement Identification Convention | R | R | R |
-| 20. Requirement Status Convention | R | R | R |
-| 21. SRS Review Checklist | X | C | R |
-| 22. Approval | X | C | R |
+| Section | Tier 0 | Tier 1 | Tier 2 | Tier 3 |
+|---|:-:|:-:|:-:|:-:|
+| 0. Document Control | X | O | R | R |
+| 1. Introduction | R | R | R | R |
+| 2. Overall Description | R | R | R | R |
+| 3. Stakeholders, Actors and External Systems | X | C | R | R |
+| 4. Business Context | C | C | R | R |
+| 5. Product Features | R | R | R | R |
+| 6. Use Case Specifications | X | O | R | R |
+| 7. Business Rules | C | O | R | R |
+| 8. Functional Requirements | R | R | R | R |
+| 9. Data Requirements And Data Model | C | O | R | R |
+| 10. External Interface Requirements | C | C | R | R |
+| 11. Non-functional Requirements | C | C | R | R |
+| 12. Access Control Requirements | X | O | R | R |
+| 13. State Models | X | X | C | R |
+| 14. Error Handling and Edge Cases | X | O | R | R |
+| 15. Acceptance Criteria and Verification | X | C | R | R |
+| 16. Requirements Traceability | X | X | R | R |
+| 17. Open Questions, Decisions and Risks | R | R | R | R |
+| 18. Appendices | X | O | R | R |
+| 19. Requirement Identification Convention | R | R | R | R |
+| 20. Requirement Status Convention | R | R | R | R |
+| 21. SRS Review Checklist | X | X | C | R |
+| 22. Approval | X | X | C | R |
 
-Domain Rigor adjusts the table within each present section:
+Domain Rigor and the content of the project adjust the table:
 
-- Section 6: `R` means use cases are required for `Standard` and `Strict` domains. `Light` domains add a use case only when Section 2.2.3 requires it.
-- Section 7: the catalogue (7.1) follows the table; the details (7.2) follow Section 2.2.3.
-- Section 13: becomes `R` at every Tier when any domain has driver D2.
+- Section 4: at Tier 0, contains only 4.1 Problem Statement.
+- Section 6: `R` means use cases are required for `Standard` and `Strict` domains. `Light` domains add a use case only when Section 2.2.3 requires it. At Tier 0 and Tier 1, the Agent may recommend use cases only for a `Strict` domain, naming the flow that its requirements cannot show.
+- Section 7: becomes `R` at every Tier when any domain has driver D1 or is `Strict`. The catalogue (7.1) follows the table; the details (7.2) follow Section 2.2.3.
 - Section 9: becomes `R` at every Tier when any domain has driver D4 or when the system stores business data (Section 6, item 10).
+- Section 11: at Tier 0 and Tier 1, write the catalogue (11.1) and, when needed, the details (11.2). Do not write the category subsections 11.3 to 11.16.
+- Section 13: becomes `R` at every Tier when any domain has driver D2.
+- Section 14: when omitted, errors and boundary cases live in the acceptance criteria at the depth Section 2.2.3 requires.
+- Section 18: at Tier 0, 18.4 Deprecated Items is added when an item is deprecated.
 
 ## 4. Profile Overrides
 
@@ -165,22 +175,17 @@ All SRS outputs must include:
 
 ## 7. Skipped Section Protocol
 
-When a section is skipped by tier:
+When sections are skipped by tier, depth, or variant:
 
-1. Do not silently omit it if the section number is part of the selected output structure.
-2. Add a short placeholder:
+1. Keep the numbers of the remaining sections unchanged, so that references stay valid if the document grows later.
+2. Do not write a heading or a placeholder for a skipped section, and leave it out of the table of contents.
+3. List all skipped sections once, on one line directly after the table of contents:
 
 ```markdown
-## [Section Number] Section Title
-
-**Last Updated**: YYYY-MM-DD
-**Status**: REVIEW
-**Author**: Agent
-
-This section is omitted for this project tier. Revisit if scope expands.
+**Omitted Sections**: 3, 6, 12, 21, 22 (Tier 1). Revisit if scope expands.
 ```
 
-3. Log the omission in Section 17 if it could affect stakeholder expectations.
+4. Log the omission in the document's open questions, decisions, and risks section if it could affect stakeholder expectations.
 
 ## 8. Status And Approval
 

@@ -130,7 +130,7 @@ If a new domain is needed, propose it to the user and ask for confirmation unles
 
 ## 6. Requirements Traceability Matrix
 
-Maintain an RTM in SRS Section 16 or `<OutputLocation>/Traceability-Matrix.md`.
+When SRS Section 16 is present for the project Tier (`02-SRS Output Contract.md` Section 3), maintain an RTM in Section 16 or `<OutputLocation>/Traceability-Matrix.md`. When it is omitted, no matrix is kept, and the `Source` and `Parent` fields of the items are the traceability record.
 
 The RTM is a derived view, not a second copy of the requirements. The Agent regenerates it from the `Source`, `Parent`, and verification fields of the active items whenever items are created, changed, or deprecated, and never edits rows by hand. Title, source location, and status are not repeated; they live in the items.
 
@@ -217,6 +217,7 @@ Examples:
 | Upstream Document Item | `BRS v0.2, BG-GEN-001`, `BRD v0.2, TRN-DATA-001`, `StRS v0.3, STR-BOOK-002`, or `PRD v0.4, US-BOOK-003` |
 | Approved Document | `Approved BRD v1.0, Section 5.2` |
 | Open Question Answer Sheet | `OQ-Answers, YYYY-MM-DD, OQ-AUTH-001` |
+| Existing Code | `Code, src/auth/login.ts` |
 | Agent Assumption | `[ASSUMPTION] Domain inference with reasoning; accepted by user YYYY-MM-DD` |
 
 ## 12. Cross-References

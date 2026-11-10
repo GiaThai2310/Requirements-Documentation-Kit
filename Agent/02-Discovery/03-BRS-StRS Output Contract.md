@@ -85,7 +85,7 @@ Section 4.7 becomes `R` in every profile when the product processes personal dat
 
 ## 5. Skipped Section Protocol
 
-Use the same protocol as `Agent/03-SRS/02-SRS Output Contract.md` Section 7: keep the heading, add the section metadata, and state `This section is omitted for the <Depth> depth of this project. Revisit if scope expands.`
+Use the same protocol as `Agent/03-SRS/02-SRS Output Contract.md` Section 7: list all skipped sections once on an `Omitted Sections` line, and state the depth, for example `**Omitted Sections**: 4, 7 (Lite depth). Revisit if scope expands.`
 
 ## 6. No Duplication Rule
 

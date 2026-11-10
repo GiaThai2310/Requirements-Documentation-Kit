@@ -37,12 +37,14 @@ The Agent must halt in these situations.
 
 ### 2.3 High TBD Density
 
-**Trigger**: More than 30 percent of the meaningful data points in a section would require `[TBD]`.
+**Trigger**: More than 30 percent of the data points in a top-level section (for example Section 8 or Section 11 of the SRS) would require `[TBD]`, and the section has 5 or more data points. In a smaller section, each `[TBD]` still becomes an Open Question, but it does not cause this halt.
+
+**Counting**: A data point is one item the section must state for the project Tier and Domain Rigor: a requirement, a rule, a table row, or a required field. Do not count optional fields, omitted subsections, or items marked `Not Applicable`. A required subsection that is still entirely undecided counts as one data point.
 
 **Required behavior**:
 
 1. Switch to Audit / Validation Mode, or back to Discovery Mode during Stages S0-S2.
-2. Produce a Gap Report with the questions needed to close the gaps.
+2. Produce a Gap Report with the count (for example, 7 of 20 data points) and the questions needed to close the gaps.
 3. Halt until the human provides clarification.
 
 ### 2.4 Approved Content Change

@@ -18,13 +18,13 @@ Run Macro Validation when:
 
 | ID | Check | Question | Severity |
 |---|---|---|---|
-| MC1 | Section coverage | Are required sections present for the project Tier, the Profile overrides, and the Domain Rigor adjustments (`02-SRS Output Contract.md` Section 3)? | Critical |
+| MC1 | Section coverage | Are required sections present for the project Tier, the Profile overrides, and the Domain Rigor adjustments (`02-SRS Output Contract.md` Section 3), and is every other section either present or on the `Omitted Sections` line (`02-SRS Output Contract.md` Section 7)? | Critical |
 | MC2 | Feature coverage | Does every feature have at least one related functional requirement? | Critical |
 | MC3 | Actor coverage | Does every actor appear in a use case or requirement? | Warning |
 | MC4 | Use case coverage | Does every use case have related requirements? | Critical |
 | MC5 | NFR coverage | Are relevant quality categories represented? | Warning |
 | MC6 | Error coverage | Do major flows include error or edge-case requirements? | Warning |
-| MC7 | TBD tracking | Are all `[TBD]` markers tracked and below threshold? | Critical |
+| MC7 | TBD tracking | Are all `[TBD]` markers tracked and below threshold (`Agent/01-Core/06-Human Interaction Protocol.md` Section 2.3)? | Critical |
 | MC8 | Acceptance criteria | Does every FR have acceptance criteria? | Critical |
 | MC9 | Data model coverage | When the system stores or exchanges business data, are entities, relationships, logical attributes, constraints, ownership, lifecycle, and retention represented at the conceptual and logical level? Migration is required only when existing data must be moved. Physical design (tables, columns, keys) is not expected and must not be requested. | Critical |
 | MC10 | Upstream coverage | When a StRS or PRD exists, is every `Must` stakeholder requirement, PRD feature, and PRD user story realized by at least one feature or requirement in the SRS? | Critical |
@@ -56,7 +56,7 @@ Run Macro Validation when:
 | TC2 | Forward traceability | Does every requirement link to acceptance criteria or tests? | Warning |
 | TC3 | Orphan requirements | Are there requirements with no source? | Critical |
 | TC4 | Orphan features | Are there features without requirements? | Critical |
-| TC5 | RTM completeness | Does the regenerated traceability matrix list exactly the active requirements? | Critical |
+| TC5 | RTM completeness | When SRS Section 16 is present, does the regenerated traceability matrix list exactly the active requirements? | Critical |
 | TC6 | Dependency integrity | Do dependency links target valid active IDs? | Warning |
 | TC7 | Data traceability | Does every entity list its related features and requirements, and every attribute its related rules where applicable? | Warning |
 | TC8 | Vertical traceability | When upstream documents exist, does every FR and NFR trace up to an `STR`, PRD `F`, or `US` (or is marked as a derived requirement with rationale), and every `STR` and PRD `F` up to a `BG` (`BG -> STR or F/US -> FR/NFR -> AC`)? | Critical |
@@ -79,7 +79,7 @@ ISO/IEC/IEEE 29148 defines characteristics for a *set* of requirements, in addit
 | ID | Check | Question | Severity |
 |---|---|---|---|
 | SC1 | Heading hierarchy | Are heading levels sequential? | Warning |
-| SC2 | TOC alignment | Does structure match `Context/SRS-TOC.md`? | Critical |
+| SC2 | TOC alignment | Does structure match `Context/SRS-TOC.md`, apart from the sections on the `Omitted Sections` line? | Critical |
 | SC3 | Section metadata | Do major sections include date, status, author? | Warning |
 | SC4 | Formatting | Does markdown follow `05-Output Rules.md`? | Warning |
 | SC5 | Appendix completeness | Are glossary, TBD, and supporting items present when needed? | Warning |
@@ -95,7 +95,11 @@ Each check is performed by one or both methods, and the report states which:
 | Mechanical | Script or pattern search over IDs, links, headings, markers, and fields | CC2, CC3, CC5, TC1, TC5, TC6, SC1-SC4, counts |
 | Semantic | Reading the content and judging its meaning | CC1, CC6, CC10, MC12, MC13, RS1-RS5, C1-C3, C10, C11 |
 
-A check that needs semantic reading (for example CC6 conflict detection, CC10 premise consistency, RS2 consistency) must not be reported as `PASS` when only a mechanical method was applied. Report it as `NOT RUN` or `PARTIAL` with the reason, and do not count it as passed. A report with `0 Critical` is valid only when every Critical check was run with its suitable method.
+A check that needs semantic reading (for example CC6 conflict detection, CC10 premise consistency, RS2 consistency) must not be reported as `PASS` when only a mechanical method was applied. Report it as `NOT RUN` or `PARTIAL` with the reason, and do not count it as passed.
+
+A check is `N/A` only when all it examines is a section legitimately omitted under `02-SRS Output Contract.md` Section 3, for example TC5 without Section 16 or MC4 without Section 6. State the omitted section in the note. `N/A` is not counted as passed. Traceability still applies without Section 16: TC1, TC3, and TC8 run on the `Source` and `Parent` fields.
+
+A report with `0 Critical` is valid only when every applicable Critical check was run with its suitable method.
 
 ### 8.2 Report Template
 
@@ -107,24 +111,24 @@ Write reports to `<OutputLocation>/Reports/` using this format:
 **Date**: YYYY-MM-DD
 **SRS Version**: [Version]
 **Validator**: Agent (Audit Mode)
-**Project Profile / Tier**: [PERSONAL / TEAM / SME] / [1 / 2 / 3]
+**Project Profile / Tier**: [PERSONAL / TEAM / SME] / [0 / 1 / 2 / 3]
 **Decisions Swept Since Previous Validation**: [DEC IDs, or None]
 
 ## Summary
 
-| Category | Total Checks | Passed | Failed Critical | Failed Warning | Not Run Or Partial |
-|---|---:|---:|---:|---:|---:|
-| Completeness | N | N | N | N | N |
-| Consistency | N | N | N | N | N |
-| Traceability | N | N | N | N | N |
-| Requirement Set | N | N | N | N | N |
-| Structural | N | N | N | N | N |
+| Category | Total Checks | Passed | Failed Critical | Failed Warning | Not Run Or Partial | N/A |
+|---|---:|---:|---:|---:|---:|---:|
+| Completeness | N | N | N | N | N | N |
+| Consistency | N | N | N | N | N | N |
+| Traceability | N | N | N | N | N | N |
+| Requirement Set | N | N | N | N | N | N |
+| Structural | N | N | N | N | N | N |
 
 ## Check Results
 
 | ID | Result | Method | Note |
 |---|---|---|---|
-| MC1 | PASS / FAIL / NOT RUN / PARTIAL | Mechanical / Semantic / Both | [Short note] |
+| MC1 | PASS / FAIL / NOT RUN / PARTIAL / N/A | Mechanical / Semantic / Both | [Short note] |
 
 ## Failed Checks
 

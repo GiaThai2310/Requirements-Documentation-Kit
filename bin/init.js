@@ -6,6 +6,8 @@ const path = require('path');
 const foldersToCopy = ['Agent', 'Context', 'User'];
 const sourceDir = path.join(__dirname, '..');
 const targetDir = path.join(process.cwd(), 'RDK');
+// Agent Skills folders. Between them they cover Claude Code, Cursor, Copilot, Codex, and Gemini CLI.
+const skillDirs = ['.claude/skills', '.agents/skills'];
 
 function copyRecursiveSync(src, dest) {
   const exists = fs.existsSync(src);
@@ -42,4 +44,10 @@ foldersToCopy.forEach(folder => {
   }
 });
 
+skillDirs.forEach(dir => {
+  copyRecursiveSync(path.join(sourceDir, 'Skills', 'rdk'), path.join(process.cwd(), dir, 'rdk'));
+  console.log(`Copied ${dir}/rdk/`);
+});
+
 console.log('Done! Templates have been copied to the RDK/ directory.');
+console.log('Start with /rdk in your Agent. In Codex use $rdk; in Gemini CLI say "run rdk".');

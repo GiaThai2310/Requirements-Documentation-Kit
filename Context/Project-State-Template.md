@@ -1,6 +1,6 @@
 ---
 document_type: project_state
-state_schema_version: "1.1"
+state_schema_version: "1.2"
 project: "<Project Name>"
 last_updated: YYYY-MM-DD
 ---
@@ -16,7 +16,7 @@ The Agent reads this file first in every session and updates it at the end of ev
 | Project Name | `<Project Name>` | `<Source>` |
 | Idea Statement | `<Two or three sentences confirmed by the user>` | `<Source>` |
 | Project Profile | PERSONAL / TEAM / SME | `<Source>` |
-| Tier | 1 / 2 / 3 | `<Source>` |
+| Tier | 0 / 1 / 2 / 3 | `<Source>` |
 | Output Language | `en` / `vi` / other ISO 639-1 code | `<Source>` |
 | Mandatory Keyword | `shall` (en) / `phải` (vi) / other | `<Source>` |
 | Assumption Policy | `ask` / `allow-minor` | `<Source>` |
@@ -40,6 +40,14 @@ Filled in Stage S3 (`Agent/03-SRS/02-SRS Output Contract.md` Section 2.2). One r
 |---|---|---|---|---|---|
 | `<CODE>` | `<Domain meaning>` | `<For example: D1, D6, D7, or None>` | `<Source IDs or references>` | Light / Standard / Strict | `<Pending / YYYY-MM-DD by <name>>` |
 
+### 1.3 Source Register
+
+Existing material the user confirmed as a source (`Q-INT-008` or the `/rdk` project scan). The Agent reads these files but never edits, moves, or deletes them. Priority follows `Agent/01-Core/04-Source Priority.md`.
+
+| Source | Path | Appears To Be | Layer | Priority | Confirmed |
+|---|---|---|---|---|---|
+| `<Short name>` | `<Path>` | `<For example: meeting notes, old PRD, existing code>` | Business / Stakeholder-Product / Software / Other | P2 / P3 / P4 | `<YYYY-MM-DD by <name>>` |
+
 ## 2. Document Register
 
 Each row is one document in the pipeline. Keep only the rows for documents in the Document Set; mark a removed or skipped document `Skipped (not in Document Set)`. New document types can be added as rows without changing the structure.
@@ -51,7 +59,7 @@ Each row is one document in the pipeline. Keep only the rows for documents in th
 | 1 | BRD | `01-BRD.md` | Primary / Secondary | Lite / Standard / Full | `0.1` | DRAFT | S1 Business | `<Pending / Passed / Skipped>` |
 | 2 | StRS | `02-StRS.md` | Primary / Secondary | Lite / Standard / Full | `0.1` | DRAFT | S2 Stakeholder & Product | `<Pending / Passed / Skipped>` |
 | 2 | PRD | `02-PRD.md` | Primary / Secondary | Lean / Standard | `0.1` | DRAFT | S2 Stakeholder & Product | `<Pending / Passed / Skipped>` |
-| 3 | SRS | `03-SRS.md` | - | Tier 1 / 2 / 3 | `0.1` | DRAFT | S3 Outline, S4 Incremental | `<Pending / Passed / Skipped>` |
+| 3 | SRS | `03-SRS.md` | - | Tier 0 / 1 / 2 / 3 | `0.1` | DRAFT | S3 Outline, S4 Incremental | `<Pending / Passed / Skipped>` |
 | 3 | Validation Report | `Reports/Validation-Report-YYYY-MM-DD.md` | - | - | - | - | S5 Baseline | `<Pending / Passed>` |
 | 4 | Backlog | `04-Backlog.md` | - | - | `0.1` | DRAFT | S6 Delivery | `<Pending / Passed / Skipped>` |
 | 4 | Release Plan | `04-Release-Plan.md` | - | - | `0.1` | DRAFT | S6 Delivery | `<Pending / Passed / Skipped>` |

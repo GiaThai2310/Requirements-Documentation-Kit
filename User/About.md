@@ -48,7 +48,7 @@ ISO/IEC/IEEE 29148:2018 describes three related requirements documents (BRS, StR
 
 Each level traces to the one above it: business goals (`BG`) -> stakeholder requirements (`STR`) or PRD features and stories (`F`, `US`) -> software requirements (`FR`, `NFR`) -> backlog items and releases. This makes it possible to explain why every software requirement exists and to see what is affected when a goal changes.
 
-The depth of each document depends on the Project Profile (PERSONAL, TEAM, SME), the Tier (1-3, the scale of the product), and the Domain Rigor of each requirement domain (`Light`, `Standard`, `Strict`, its complexity). See `User/Guide.md`.
+The depth of each document depends on the Project Profile (PERSONAL, TEAM, SME), the Tier (0-3, the scale of the product), and the Domain Rigor of each requirement domain (`Light`, `Standard`, `Strict`, its complexity). See `User/Guide.md`.
 
 ## 3. Why Use An SRS?
 

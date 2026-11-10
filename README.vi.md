@@ -54,7 +54,7 @@ Kit chỉ làm **phân tích yêu cầu**. Kit không tạo wireframe, API contr
 *   **Quy trình từ ý tưởng đến bộ tài liệu yêu cầu**: Các bước có cổng (gate) do con người xác nhận: Intake → Nghiệp vụ (BRS/BRD) → Người dùng & Sản phẩm (StRS/PRD) → Khung SRS → Viết SRS → Xác thực & Chốt baseline → Triển khai (tùy chọn).
 *   **Tự chọn bộ tài liệu**: Chọn BRS, BRD, StRS, PRD, SRS, Backlog, Release Plan cho từng dự án. Agent gợi ý một bộ và không bao giờ viết cùng một nội dung hai lần.
 *   **PRD Lean hoặc Standard**: Agent hỏi phạm vi PRD, sau đó hỏi bạn có muốn user stories, backlog hay release plan không. Chỉ cần một câu "có" là làm Standard PRD.
-*   **Profile × Tier × Domain Rigor**: Mức quản trị (PERSONAL / TEAM / SME, dựa trên tinh thần ISO/IEC 29110), quy mô (Tier 1-3) và độ phức tạp của từng domain yêu cầu (`Light` / `Standard` / `Strict`) được điều chỉnh độc lập với nhau.
+*   **Profile × Tier × Domain Rigor**: Mức quản trị (PERSONAL / TEAM / SME, dựa trên tinh thần ISO/IEC 29110), quy mô (Tier 0-3) và độ phức tạp của từng domain yêu cầu (`Light` / `Standard` / `Strict`) được điều chỉnh độc lập với nhau.
 *   **Phỏng vấn khám phá có hướng dẫn**: Mỗi lượt Agent hỏi 3-5 câu, lấy từ bộ câu hỏi đã ánh xạ theo tiêu chuẩn. Bạn không cần có sẵn tài liệu mô tả hoàn chỉnh mới bắt đầu được.
 *   **Không chắc thì hỏi (Ask-When-Uncertain)**: Khi đầu vào mơ hồ, một thiết lập chưa rõ, hoặc Agent không biết làm gì tiếp, Agent sẽ hỏi bạn kèm các lựa chọn và đề xuất, thay vì tự đoán. Agent không bao giờ tự đặt ngày, ước lượng hay giá.
 *   **Phiếu trả lời câu hỏi mở**: Trả lời mọi câu hỏi mở trong một file, `OQ-Answers.md`, thay vì phải lục trong từng tài liệu.
@@ -147,7 +147,7 @@ Mỗi cổng (gate) do bạn hoặc người phê duyệt của profile xác nh�
 
 ### Tier Và Domain Rigor
 
-**Tier** (1 nhỏ, 2 trung bình, 3 lớn hoặc có ràng buộc pháp lý) quyết định SRS có những phần nào.
+**Tier** (0 MVP, 1 nhỏ, 2 trung bình, 3 lớn hoặc có ràng buộc pháp lý) quyết định SRS có những phần nào. Tier được xét trên nhiều yếu tố cùng lúc: người dùng, số feature, độ phức tạp của feature, dịch vụ bên ngoài, nền tảng và pháp lý.
 
 **Domain Rigor** quyết định mỗi domain yêu cầu được viết sâu đến đâu. Ở bước S3, Agent kiểm tra từng domain theo tám yếu tố phức tạp (logic quy tắc, vòng đời trạng thái, phân quyền nhiều tầng, dữ liệu nhạy cảm, nghĩa vụ pháp lý, hậu quả nghiêm trọng hoặc không đảo ngược được, hành vi không chắc chắn hoặc dựa trên AI, nhiều tổ hợp đầu vào) rồi đề xuất một mức; bạn xác nhận.
 

@@ -111,11 +111,12 @@ The kit tailors the documents on three independent axes. Depth follows the scale
 
 | Tier | Description |
 |---|---|
-| Tier 1 - Small | Up to 3 user classes, up to 10 features, single platform, no regulatory burden. |
+| Tier 0 - MVP | Up to 2 user classes, up to 5 simple features, single platform, no regulatory burden, and no external dependencies such as a cloud service to set up, email delivery, or a third-party service. |
+| Tier 1 - Small | Up to 3 user classes, up to 10 features, single platform, a few external services, no regulatory burden. |
 | Tier 2 - Medium | 4-8 user classes, 11-30 features, integrations or multiple platforms. |
 | Tier 3 - Large | 9 or more user classes, more than 30 features, compliance or multi-system integration. |
 
-A personal project can still be Tier 2, and a start-up MVP can be Tier 1. If you are unsure, say so: the Agent will explain the options and recommend one. It will not choose for you.
+The Tier is judged on all these factors together: a product with few features still moves up if it needs several external services. A personal project can still be Tier 2, and a start-up MVP can be Tier 0 or Tier 1. If you are unsure, say so: the Agent will explain the options and recommend one. It will not choose for you.
 
 **Domain Rigor** (how complex each requirement domain is; decides how deeply it is written):
 
@@ -246,7 +247,7 @@ Every requirement should answer:
 - How will it be verified?
 - What other requirements depend on it?
 
-Use SRS Section 16, StRS Section 9, and the PRD feature and story tables to maintain these links. Backlog items and releases trace to features and stories. Each item is written once: catalogues list IDs, and the SRS traceability matrix is regenerated from the requirements rather than maintained by hand.
+Use SRS Section 16 (Tier 2 and 3; at lower tiers the `Source` and `Parent` fields hold these links), StRS Section 9, and the PRD feature and story tables to maintain these links. Backlog items and releases trace to features and stories. Each item is written once: catalogues list IDs, and the SRS traceability matrix is regenerated from the requirements rather than maintained by hand.
 
 ## 12. Handling Gaps And Conflicts
 

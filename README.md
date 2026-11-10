@@ -54,7 +54,7 @@ The kit stays at **requirements analysis**. It does not produce wireframes, API 
 *   **Idea-to-Requirements Pipeline**: Stages with User-confirmed gates: Intake → Business (BRS/BRD) → Users & Product (StRS/PRD) → SRS Outline → SRS Writing → Validation & Baseline → Delivery (optional).
 *   **Choose Your Documents**: Pick BRS, BRD, StRS, PRD, SRS, Backlog, and Release Plan per project; the Agent recommends a set and never writes the same content twice.
 *   **Lean Or Standard PRD**: The Agent asks the PRD scope, then whether you want user stories, a backlog, or a release plan; any "yes" gives a Standard PRD.
-*   **Profile × Tier × Domain Rigor**: Governance (PERSONAL / TEAM / SME, inspired by ISO/IEC 29110), scale (Tier 1-3), and the complexity of each requirement domain (`Light` / `Standard` / `Strict`) are tailored independently.
+*   **Profile × Tier × Domain Rigor**: Governance (PERSONAL / TEAM / SME, inspired by ISO/IEC 29110), scale (Tier 0-3), and the complexity of each requirement domain (`Light` / `Standard` / `Strict`) are tailored independently.
 *   **Guided Discovery Interview**: The Agent asks 3-5 questions per turn from a standards-mapped question bank, so you don't need a finished brief to start.
 *   **Ask-When-Uncertain**: Whenever input is ambiguous, a setting is unclear, or the Agent isn't sure what to do, it asks you, with options and a recommendation, instead of guessing. It never invents dates, estimates, or prices.
 *   **Answer Sheet For Open Questions**: Answer all open questions in one file, `OQ-Answers.md`, instead of searching through the documents.
@@ -147,7 +147,7 @@ Recommendations only: the Agent asks you to confirm or change the set.
 
 ### Tier And Domain Rigor
 
-The **Tier** (1 small, 2 medium, 3 large or regulated) decides which SRS sections exist.
+The **Tier** (0 MVP, 1 small, 2 medium, 3 large or regulated) decides which SRS sections exist. It is judged on several factors together: users, features, how complex the features are, external services, platforms, and regulation.
 
 **Domain Rigor** decides how deeply each requirement domain is written. In Stage S3 the Agent checks every domain for eight complexity drivers (rule logic, state lifecycles, layered access, sensitive data, regulatory duties, serious or irreversible consequences, uncertain or AI-based behavior, many input combinations) and recommends a level; you confirm it.
 

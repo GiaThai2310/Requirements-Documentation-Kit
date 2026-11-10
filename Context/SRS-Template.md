@@ -6,7 +6,7 @@ document_type: srs
 srs_schema_version: "2.0"
 project: "<Project Name>"
 project_profile: PERSONAL | TEAM | SME
-tier: 1 | 2 | 3
+tier: 0 | 1 | 2 | 3
 output_language: en
 upstream: []  # documents from the Document Set, for example "01-BRD.md", "02-PRD.md"
 version: "0.1"
@@ -25,6 +25,8 @@ tags:
 # Software Requirements Specification
 
 ## Table Of Contents
+
+Keep only the sections present for the project. List the rest on one `Omitted Sections` line after the table of contents (`Agent/03-SRS/02-SRS Output Contract.md` Section 7). Do not write placeholders for them.
 
 - [0. Document Control](#0-document-control)
   - [0.1 Document Information](#01-document-information)
@@ -157,7 +159,7 @@ tags:
 | Project Name | `<Project Name>` |
 | Software/System Name | `<Software or System Name>` |
 | Project Profile | PERSONAL / TEAM / SME |
-| Tier | 1 / 2 / 3 |
+| Tier | 0 / 1 / 2 / 3 |
 | Upstream Documents | `<BRS / BRD / StRS / PRD with versions>`, or None (Discovery skipped, see `<DEC ID>`) |
 | Document Name | Software Requirements Specification |
 | Document ID | `<Document ID>` |
@@ -657,6 +659,8 @@ Only for NFRs whose measurement conditions do not fit in a catalogue row.
   1. Given `<measurement condition>`, when `<measurement action>`, then the system shall `<measurable result>`.
 - **Dependencies**: None
 - **Notes**: Category: Performance / Availability / Reliability / Scalability / Security / Privacy / Usability / Maintainability / Compatibility / Accessibility / Logging / Recovery / Compliance / Safety; ISO/IEC 25010 Characteristic: `<Characteristic>`
+
+Sections 11.3 to 11.16 are written at Tier 2 and Tier 3 only (`Agent/03-SRS/02-SRS Output Contract.md` Section 3).
 
 ### 11.3 Performance
 

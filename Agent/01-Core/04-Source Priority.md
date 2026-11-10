@@ -13,7 +13,7 @@ When two or more sources conflict, apply the highest available priority:
 | P1 | Current Client Decision | A direct instruction or interview answer from the user in the current session. |
 | P2 | Approved Document | A formally approved BRS, StRS, SRS, contract, security policy, or signed decision record. |
 | P3 | Meeting Notes / Workshop Records | Documented stakeholder discussion, decisions, and action items. |
-| P4 | Legacy Document | Old, inherited, superseded, or explicitly unapproved material. |
+| P4 | Legacy Document | Old, inherited, superseded, or explicitly unapproved material, including existing documents with no evidence of approval and existing code. Code shows current behavior, not required behavior. |
 | P5 | Agent Assumption | A defensible inference used only when no higher-priority source covers the point. |
 
 ## 3. Resolution Rules
